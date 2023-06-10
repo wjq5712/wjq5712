@@ -112,7 +112,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -139,7 +139,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wjq5712.github.io/2023/06/10/AttDyms/">
+    <link itemprop="mainEntityOfPage" href="https://wjq5712.github.io/2023/06/10/%E5%A7%BF%E6%80%81%E5%8A%A8%E5%8A%9B%E5%AD%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -157,7 +157,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/06/10/AttDyms/" class="post-title-link" itemprop="url">AttDym</a>
+          <a href="/2023/06/10/%E5%A7%BF%E6%80%81%E5%8A%A8%E5%8A%9B%E5%AD%A6/" class="post-title-link" itemprop="url">姿态动力学及控制</a>
         </h2>
 
         <div class="post-meta-container">
@@ -169,7 +169,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2023-06-10 15:58:07 / Modified: 16:10:02" itemprop="dateCreated datePublished" datetime="2023-06-10T15:58:07+08:00">2023-06-10</time>
+      <time title="Created: 2023-06-10 15:58:07 / Modified: 16:34:25" itemprop="dateCreated datePublished" datetime="2023-06-10T15:58:07+08:00">2023-06-10</time>
     </span>
 
   
@@ -239,6 +239,313 @@ q_3]^\text{T}\)</span>为矢量部分。</p>
 class="math inline">\(\pmb{T}\)</span>为刚体受到的合外力矩，<span
 class="math inline">\(\pmb{\omega}\)</span>为刚体角速度（陀螺仪测得的本体系相对惯性系的角速度在本体系下的分量），<span
 class="math inline">\(\pmb{I}\)</span>为刚体的转动惯量矩阵。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wjq5712.github.io/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wu Jiaqi">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/" class="post-title-link" itemprop="url">矩阵的导数运算</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-06-10 15:58:07 / Modified: 16:34:35" itemprop="dateCreated datePublished" datetime="2023-06-10T15:58:07+08:00">2023-06-10</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="矩阵的导数运算1"><a
+target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1av4y1b7MM/?spm_id_from=333.1007.top_right_bar_window_history.content.click">矩阵的导数运算</a></h1>
+<h2 id="标量方程对向量的导数">1. 标量方程对向量的导数</h2>
+<p>假设一个标量方程： <span class="math display">\[
+y=f(\pmb{x})
+\]</span> 其中，<span class="math inline">\(\boldsymbol{x}=[x_1\quad x_2
+\quad \cdots \quad x_n]^T\)</span>。</p>
+<p><span class="math inline">\(y\)</span>对<span
+class="math inline">\(\pmb{x}\)</span>的导数有分母布局和分子布局两种形式。</p>
+分母布局（Denominator layout），偏导的行数与分母相同： $$ =
+<span class="math display">\[\begin{bmatrix}
+\frac{\part y}{\part x_1} \\
+\frac{\part y}{\part x_2} \\
+\vdots \\
+\frac{\part y}{\part x_n}
+
+\end{bmatrix}\]</span>
+<span class="math display">\[
+分子布局（Numerator layout），偏导的行数与分子相同：
+\]</span> =
+<span class="math display">\[\begin{bmatrix}
+\frac{\part y}{\part x_1} \quad
+\frac{\part y}{\part x_2} \quad
+\cdots \quad
+\frac{\part y}{\part x_n}
+
+\end{bmatrix}\]</span>
+<p>$$ 分子布局与分母布局的结果互为转置。</p>
+<h2 id="向量方程对向量的导数">2. 向量方程对向量的导数</h2>
+<p>假设一个向量方程： <span class="math display">\[
+\pmb{y} = f(\pmb{x})
+\]</span> 其中，<span class="math inline">\(\pmb{x}=[x_1\quad x_2 \quad
+\cdots \quad x_n]^T\)</span>，<span class="math inline">\(\pmb{y}=[y_1
+\quad y_2 \quad \cdots \quad y_m]^T\)</span>。</p>
+<p>分母布局下，<span class="math inline">\(\pmb{y}\)</span>对<span
+class="math inline">\(\pmb{x}\)</span>的导数为： <span
+class="math display">\[
+\frac{\part \pmb{y}_{m \times 1}}{\part \pmb{x}_{n \times 1}}=
+\begin{bmatrix}
+\frac{\part \pmb{y}}{\part x_1} \\
+\frac{\part \pmb{y}}{\part x_2} \\
+\vdots \\
+\frac{\part \pmb{y}}{\part x_n} \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+\frac{\part y_1}{\part x_1} \quad \frac{\part y_2}{\part x_1} \quad
+\dots \quad \frac{\part y_m}{\part x_1} \\
+\frac{\part y_1}{\part x_2} \quad \frac{\part y_2}{\part x_2} \quad
+\dots \quad \frac{\part y_m}{\part x_2} \\
+\vdots \\
+\frac{\part y_1}{\part x_n} \quad \frac{\part y_2}{\part x_n} \quad
+\dots \quad \frac{\part y_m}{\part x_n} \\
+\end{bmatrix}
+\]</span> 第一步先使<span
+class="math inline">\(\pmb{y}\)</span>分别对<span
+class="math inline">\(x_1\dots
+\,x_n\)</span>求导，由于采用分母布局，因此结果为纵向展开，行数为<span
+class="math inline">\(n\)</span>；第二步在对每一行继续按照分母布局展开，每一行的展开结果仍然是1行，列数为<span
+class="math inline">\(m\)</span>。综上，分母布局下的最终求导结果为一个<span
+class="math inline">\(m \times n\)</span>的矩阵。</p>
+<p>分子布局同理，结果为分母布局的转置。结果如下： <span
+class="math display">\[
+\frac{\part \pmb{y}_{m \times 1}}{\part \pmb{x}_{n \times 1}}=
+\begin{bmatrix}
+\frac{\part \pmb{y}}{\part x_1} \\
+\frac{\part \pmb{y}}{\part x_2} \\
+\vdots \\
+\frac{\part \pmb{y}}{\part x_n} \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+\frac{\part y_1}{\part x_1} \quad \frac{\part y_1}{\part x_2} \quad
+\dots \quad \frac{\part y_1}{\part x_n} \\
+\frac{\part y_2}{\part x_1} \quad \frac{\part y_2}{\part x_2} \quad
+\dots \quad \frac{\part y_2}{\part x_n} \\
+\vdots \\
+\frac{\part y_m}{\part x_1} \quad \frac{\part y_m}{\part x_2} \quad
+\dots \quad \frac{\part y_m}{\part x_n} \\
+\end{bmatrix}
+\]</span> 常用特例：</p>
+<p>在分母布局下，假设<span class="math inline">\(\pmb{x}=[x_1 \quad x_2
+\quad \cdots \quad x_m]^T\)</span>，且 <span class="math display">\[
+\pmb{A}=
+\begin{bmatrix}
+a_{11} \quad a_{12} \quad \dots \quad a_{1m} \\
+a_{21} \quad a_{22} \quad \dots \quad a_{2m} \\
+\vdots \\
+a_{m1} \quad a_{m2} \quad \dots \quad a_{mm} \\
+\end{bmatrix}
+\]</span></p>
+<p>则 <span class="math display">\[
+\frac{\part \pmb{A} \pmb{x}}{\part \pmb{x}} = \pmb{A}^\text{T}
+\]</span> 而在<strong>分子布局</strong>下 <span class="math display">\[
+\frac{\part \pmb{A} \pmb{x}}{\part \pmb{x}} = \pmb{A}
+\]</span></p>
+<p>对二次型有： <span class="math display">\[
+\frac{\part \pmb{x}^\text{T} \pmb{A} \pmb{x}}{\part
+\pmb{x}}=\pmb{A}\pmb{x}+\pmb{A}^\text{T}\pmb{x}
+\]</span> 特别的，当<span
+class="math inline">\(A\)</span>为对称矩阵时，<span
+class="math inline">\(\frac{\part \pmb{x}^T \pmb{A} \pmb{x}}{\part
+\pmb{x}}=2 \pmb{A}\pmb{x}\)</span>。</p>
+<p><strong>注意：在公式推导的过程中必须要确定使用分母布局还是分子布局，混用两种布局会在编程仿真中出现矩阵维度不匹配的问题！！！</strong></p>
+<h2 id="矩阵求导的链式法则2">3. <a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/pinard/p/10825264.html">矩阵求导的链式法则</a></h2>
+<p><strong>约定：标量函数对向量、矩阵求导采用分母布局，向量函数对向量求导采用分子布局。</strong></p>
+<p><strong>前者是为了保持求导结果与自变量向量维度相同，后者是为了与雅各比矩阵定义一致。</strong></p>
+<h3 id="向量函数对向量求导的链式法则">3.1
+向量函数对向量求导的链式法则</h3>
+<p>假设多个向量存在依赖关系，比如三个向量<span
+class="math inline">\(\pmb{x} \rightarrow \pmb{y} \rightarrow
+\pmb{z}\)</span>，则有下面的链式求导法则： <span class="math display">\[
+\frac{\part \pmb{z}}{\part \pmb{x}} = \frac{\part \pmb{z}}{\part
+\pmb{y}} \frac{\part \pmb{y}}{\part \pmb{x}}
+\]</span>
+该法则可以推广到更多的向量依赖关系，但要注意依赖关系中所有的变量都是向量，如果其中存在矩阵或者标量，则该链式法则不成立。</p>
+<p>假设有n个向量满足依赖关系：<span class="math inline">\(\pmb{y_1}
+\rightarrow \pmb{y_1} \rightarrow \dots \rightarrow
+\pmb{y_n}\)</span>，则有下面的链式求导法则： <span
+class="math display">\[
+\frac{\part \pmb{y_n}}{\part \pmb{y_1}} = \frac{\part \pmb{y_n}}{\part
+\pmb{y_{n-1}}} \frac{\part \pmb{y_{n-1}}}{\part \pmb{y_{n-1}}} \dots
+\frac{\part \pmb{y_2}}{\part \pmb{y_1}}
+\]</span></p>
+<h3 id="标量函数对向量求导的链式法则">3.2
+标量函数对向量求导的链式法则</h3>
+<p>假设有一个标量<span class="math inline">\(z\)</span>和两个向量<span
+class="math inline">\(\pmb{x}、\pmb{y}\)</span>，它们满足依赖关系：<span
+class="math inline">\(\pmb{x} \rightarrow \pmb{y} \rightarrow
+z\)</span>，则有下面的链式求导法则： <span class="math display">\[
+\frac{\part z}{\part \pmb{x}} = (\frac{\part \pmb{y}}{\part
+\pmb{x}})^\text{T} \frac{\part z}{\part \pmb{y}}
+\]</span> 如果是标量函数对多个向量求导，比如：<span
+class="math inline">\(\pmb{y_1} \rightarrow \pmb{y_1} \rightarrow \dots
+\rightarrow \pmb{y_n} \rightarrow z\)</span>，则其链式法则可表示为：
+<span class="math display">\[
+\frac{\part z}{\part \pmb{y_1}} = (\frac{\part \pmb{y_n}}{\part
+\pmb{y_{n-1}}} \frac{\part \pmb{y_{n-1}}}{\part \pmb{y_{n-1}}} \dots
+\frac{\part \pmb{y_2}}{\part \pmb{y_1}})^\text{T} \frac{\part z}{\part
+\pmb{y_n}}
+\]</span></p>
+<p>## 4. 矩阵导数的乘法公式</p>
+<h3 id="标量向量对标量求导">4.1 标量×向量对标量求导</h3>
+假设有一个向量<span
+class="math inline">\(\pmb{y}=u(x)\pmb{v}(x)\)</span>，其中<span
+class="math inline">\(u(x)\)</span>是关于标量<span
+class="math inline">\(x\)</span>的标量函数，<span
+class="math inline">\(\pmb{v}(x)\)</span>是关于标量<span
+class="math inline">\(x\)</span>的向量函数，则有如下求导公式： $$ {\part
+x} =
+=
+<span class="math display">\[\begin{bmatrix}
+\frac{\part u}{\part x} v_1 + u \frac{\part v_1}{\part x} \\
+\vdots \\
+\frac{\part u}{\part x} v_m + u \frac{\part v_m}{\part x}
+\end{bmatrix}\]</span>
+<p>= + u $$</p>
+<h3 id="标量向量对向量求导">4.2 标量×向量对向量求导</h3>
+<p>假设有一个向量<span
+class="math inline">\(\pmb{y}=u(\pmb{x})\pmb{v}(\pmb{x})\)</span>，其中<span
+class="math inline">\(u(\pmb{x})\)</span>是关于标量<span
+class="math inline">\(\pmb{x}\)</span>的向量函数，<span
+class="math inline">\(\pmb{v}(\pmb{x})\)</span>是关于向量<span
+class="math inline">\(\pmb{x}\)</span>的向量函数，则有如下求导公式：
+<span class="math display">\[
+\frac{\part \pmb{y}} {\part \pmb{x} }
+=
+\begin {bmatrix}
+\frac{\part y_1}{\part x_1} \dots \frac{\part y_1}{\part x_n} \\
+\vdots \quad  \quad \quad  \vdots\\
+\frac{\part y_m}{\part x_n} \dots \frac{\part y_m}{\part x_n}
+\end{bmatrix}
+=
+\begin{bmatrix}
+\frac{\part u}{\part x_1} v_1 + u \frac{\part v_1}{\part x_1} \dots
+\frac{\part u}{\part x_n} v_1 + u \frac{\part v_1}{\part x_n}\\
+\vdots \quad  \quad \quad \quad \quad \quad \quad  \vdots\\
+\frac{\part u}{\part x_1} v_m + u \frac{\part v_m}{\part x_1} \dots
+\frac{\part u}{\part x_n} v_m + u \frac{\part v_m}{\part x_n}\\
+\end{bmatrix}
+=
+\pmb{v} (\frac{\part u}{\part \pmb{x}})^\text{T} + u \frac{\part
+\pmb{v}}{\part \pmb{x}}
+\]</span></p>
+<h2 id="矩阵导数的除法公式">5. 矩阵导数的除法公式</h2>
+<h3 id="标量向量对标量求导-1">5.1 标量/向量对标量求导</h3>
+假设有一个向量<span
+class="math inline">\(\pmb{y}=\pmb{u}({x})/{v}({x})\)</span>，其中<span
+class="math inline">\(\pmb{u}(x)\)</span>是关于标量<span
+class="math inline">\({x}\)</span>的向量函数，<span
+class="math inline">\({v}({x})\)</span>是关于标量<span
+class="math inline">\({x}\)</span>的标量函数，则有如下求导公式： $$
+{\part x} =
+=
+<span class="math display">\[\begin{bmatrix}
+\frac{1}{v^2}(\frac{\part u}{\part x} v_1 - u \frac{\part v_1}{\part x})
+\\
+\vdots \\
+\frac{1}{v^2}(\frac{\part u}{\part x} v_m - u \frac{\part v_m}{\part x})
+\end{bmatrix}\]</span>
+<p>= ( - u ) $$</p>
+<h3 id="标量向量对向量求导-1">5.2 标量/向量对向量求导</h3>
+<p>假设有一个向量<span
+class="math inline">\(\pmb{y}=\pmb{u}(\pmb{x})/{v}(\pmb{x})\)</span>，其中<span
+class="math inline">\(\pmb{u}(\pmb{x})\)</span>是关于向量<span
+class="math inline">\(\pmb{x}\)</span>的向量函数，<span
+class="math inline">\({v}(\pmb{x})\)</span>是关于向量<span
+class="math inline">\(\pmb{x}\)</span>的标量函数，则有如下求导公式：
+<span class="math display">\[
+\begin{aligned}
+\frac{\part \pmb{y}} {\part \pmb{x} }
+&amp;=
+\begin {bmatrix}
+\frac{\part y_1}{\part x_1} \dots \frac{\part y_1}{\part x_n} \\
+\vdots \quad  \quad \quad  \vdots\\
+\frac{\part y_m}{\part x_n} \dots \frac{\part y_m}{\part x_n}
+\end{bmatrix}
+=
+\begin{bmatrix}
+\frac{1}{v^2}(\frac{\part u}{\part x_1} v_1 - u \frac{\part v_1}{\part
+x_1})
+\dots
+\frac{1}{v^2}(\frac{\part u}{\part x_n} v_1 - u \frac{\part v_1}{\part
+x_n}) \\
+\vdots \quad  \quad \quad \quad \quad \quad \quad  \vdots\\
+\frac{1}{v^2}(\frac{\part u}{\part x_1} v_m - u \frac{\part v_m}{\part
+x_1})
+\dots
+\frac{1}{v^2}(\frac{\part u}{\part x_n} v_m - u \frac{\part v_m}{\part
+x_n}) \\
+\end{bmatrix}\\
+\\
+&amp;=
+\frac{1}{v^2}({v}\frac{\part \pmb{u}}{\part \pmb{x}} - \pmb{u}
+(\frac{\part {v}}{\part \pmb{x}})^\text{T})
+\end{aligned}
+\]</span></p>
 
       
     </div>
