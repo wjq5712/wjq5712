@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wjq5712.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.17.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="矩阵的导数运算 1. 标量方程对向量的导数 假设一个标量方程： \[ y&#x3D;f(\pmb{x}) \] 其中，\(\boldsymbol{x}&#x3D;[x_1\quad x_2 \quad \cdots \quad x_n]^T\)。 \(y\)对\(\pmb{x}\)的导数有分母布局和分子布局两种形式。 分母布局（Denominator layout），偏导的行数与分母相同： $$ &#x3D;">
+    <meta name="description" content="矩阵的导数运算 1. 标量方程对向量的导数 假设一个标量方程： \[ y&#x3D;f(\pmb{x}) \] 其中，\(\boldsymbol{x}&#x3D;[x_1\quad x_2 \quad \cdots \quad x_n]^T\)。 \(y\)对\(\pmb{x}\)的导数有分母布局和分子布局两种形式。 分母布局（Denominator layout），偏导的行数与分母相同： \[ \f">
 <meta property="og:type" content="article">
 <meta property="og:title" content="矩阵的导数运算">
 <meta property="og:url" content="https://wjq5712.github.io/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="矩阵的导数运算 1. 标量方程对向量的导数 假设一个标量方程： \[ y&#x3D;f(\pmb{x}) \] 其中，\(\boldsymbol{x}&#x3D;[x_1\quad x_2 \quad \cdots \quad x_n]^T\)。 \(y\)对\(\pmb{x}\)的导数有分母布局和分子布局两种形式。 分母布局（Denominator layout），偏导的行数与分母相同： $$ &#x3D;">
+<meta property="og:description" content="矩阵的导数运算 1. 标量方程对向量的导数 假设一个标量方程： \[ y&#x3D;f(\pmb{x}) \] 其中，\(\boldsymbol{x}&#x3D;[x_1\quad x_2 \quad \cdots \quad x_n]^T\)。 \(y\)对\(\pmb{x}\)的导数有分母布局和分子布局两种形式。 分母布局（Denominator layout），偏导的行数与分母相同： \[ \f">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-06-10T07:58:07.000Z">
-<meta property="article:modified_time" content="2023-06-10T08:34:35.167Z">
+<meta property="article:published_time" content="2023-06-10T08:58:07.000Z">
+<meta property="article:modified_time" content="2023-06-10T08:58:34.109Z">
 <meta property="article:author" content="Wu Jiaqi">
 <meta name="twitter:card" content="summary">
 
@@ -119,7 +119,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -177,7 +177,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2023-06-10 15:58:07 / Modified: 16:34:35" itemprop="dateCreated datePublished" datetime="2023-06-10T15:58:07+08:00">2023-06-10</time>
+      <time title="Created: 2023-06-10 16:58:07 / Modified: 16:58:34" itemprop="dateCreated datePublished" datetime="2023-06-10T16:58:07+08:00">2023-06-10</time>
     </span>
 
   
@@ -198,25 +198,26 @@ y=f(\pmb{x})
 \quad \cdots \quad x_n]^T\)</span>。</p>
 <p><span class="math inline">\(y\)</span>对<span
 class="math inline">\(\pmb{x}\)</span>的导数有分母布局和分子布局两种形式。</p>
-分母布局（Denominator layout），偏导的行数与分母相同： $$ =
-<span class="math display">\[\begin{bmatrix}
-\frac{\part y}{\part x_1} \\
-\frac{\part y}{\part x_2} \\
+<p>分母布局（Denominator layout），偏导的行数与分母相同： <span
+class="math display">\[
+\frac{\partial y}{\partial \pmb{x}}=
+\begin{bmatrix}
+\frac{\partial y}{\partial x_1} \\
+\frac{\partial y}{\partial x_2} \\
 \vdots \\
-\frac{\part y}{\part x_n}
-
-\end{bmatrix}\]</span>
-<span class="math display">\[
-分子布局（Numerator layout），偏导的行数与分子相同：
-\]</span> =
-<span class="math display">\[\begin{bmatrix}
-\frac{\part y}{\part x_1} \quad
-\frac{\part y}{\part x_2} \quad
+\frac{\partial y}{\partial x_n}
+\end{bmatrix}
+\]</span></p>
+<p>分子布局（Numerator layout），偏导的行数与分子相同：</p>
+<p><span class="math display">\[
+\frac{\partial y}{\partial \pmb{x}}=
+\begin{bmatrix}
+\frac{\partial y}{\partial x_1} \quad
+\frac{\partial y}{\partial x_2} \quad
 \cdots \quad
-\frac{\part y}{\part x_n}
-
-\end{bmatrix}\]</span>
-<p>$$ 分子布局与分母布局的结果互为转置。</p>
+\frac{\partial y}{\partial x_n}
+\end{bmatrix}
+\]</span> 分子布局与分母布局的结果互为转置。</p>
 <h2 id="向量方程对向量的导数">2. 向量方程对向量的导数</h2>
 <p>假设一个向量方程： <span class="math display">\[
 \pmb{y} = f(\pmb{x})
@@ -226,22 +227,22 @@ class="math inline">\(\pmb{x}\)</span>的导数有分母布局和分子布局两
 <p>分母布局下，<span class="math inline">\(\pmb{y}\)</span>对<span
 class="math inline">\(\pmb{x}\)</span>的导数为： <span
 class="math display">\[
-\frac{\part \pmb{y}_{m \times 1}}{\part \pmb{x}_{n \times 1}}=
+\frac{\partial \pmb{y}_{m \times 1}}{\partial \pmb{x}_{n \times 1}}=
 \begin{bmatrix}
-\frac{\part \pmb{y}}{\part x_1} \\
-\frac{\part \pmb{y}}{\part x_2} \\
+\frac{\partial \pmb{y}}{\partial x_1} \\
+\frac{\partial \pmb{y}}{\partial x_2} \\
 \vdots \\
-\frac{\part \pmb{y}}{\part x_n} \\
+\frac{\partial \pmb{y}}{\partial x_n} \\
 \end{bmatrix}
 =
 \begin{bmatrix}
-\frac{\part y_1}{\part x_1} \quad \frac{\part y_2}{\part x_1} \quad
-\dots \quad \frac{\part y_m}{\part x_1} \\
-\frac{\part y_1}{\part x_2} \quad \frac{\part y_2}{\part x_2} \quad
-\dots \quad \frac{\part y_m}{\part x_2} \\
+\frac{\partial y_1}{\partial x_1} \quad \frac{\partial y_2}{\partial
+x_1} \quad \dots \quad \frac{\partial y_m}{\partial x_1} \\
+\frac{\partial y_1}{\partial x_2} \quad \frac{\partial y_2}{\partial
+x_2} \quad \dots \quad \frac{\partial y_m}{\partial x_2} \\
 \vdots \\
-\frac{\part y_1}{\part x_n} \quad \frac{\part y_2}{\part x_n} \quad
-\dots \quad \frac{\part y_m}{\part x_n} \\
+\frac{\partial y_1}{\partial x_n} \quad \frac{\partial y_2}{\partial
+x_n} \quad \dots \quad \frac{\partial y_m}{\partial x_n} \\
 \end{bmatrix}
 \]</span> 第一步先使<span
 class="math inline">\(\pmb{y}\)</span>分别对<span
@@ -252,22 +253,22 @@ class="math inline">\(m\)</span>。综上，分母布局下的最终求导结果
 class="math inline">\(m \times n\)</span>的矩阵。</p>
 <p>分子布局同理，结果为分母布局的转置。结果如下： <span
 class="math display">\[
-\frac{\part \pmb{y}_{m \times 1}}{\part \pmb{x}_{n \times 1}}=
+\frac{\partial \pmb{y}_{m \times 1}}{\partial \pmb{x}_{n \times 1}}=
 \begin{bmatrix}
-\frac{\part \pmb{y}}{\part x_1} \\
-\frac{\part \pmb{y}}{\part x_2} \\
+\frac{\partial \pmb{y}}{\partial x_1} \\
+\frac{\partial \pmb{y}}{\partial x_2} \\
 \vdots \\
-\frac{\part \pmb{y}}{\part x_n} \\
+\frac{\partial \pmb{y}}{\partial x_n} \\
 \end{bmatrix}
 =
 \begin{bmatrix}
-\frac{\part y_1}{\part x_1} \quad \frac{\part y_1}{\part x_2} \quad
-\dots \quad \frac{\part y_1}{\part x_n} \\
-\frac{\part y_2}{\part x_1} \quad \frac{\part y_2}{\part x_2} \quad
-\dots \quad \frac{\part y_2}{\part x_n} \\
+\frac{\partial y_1}{\partial x_1} \quad \frac{\partial y_1}{\partial
+x_2} \quad \dots \quad \frac{\partial y_1}{\partial x_n} \\
+\frac{\partial y_2}{\partial x_1} \quad \frac{\partial y_2}{\partial
+x_2} \quad \dots \quad \frac{\partial y_2}{\partial x_n} \\
 \vdots \\
-\frac{\part y_m}{\part x_1} \quad \frac{\part y_m}{\part x_2} \quad
-\dots \quad \frac{\part y_m}{\part x_n} \\
+\frac{\partial y_m}{\partial x_1} \quad \frac{\partial y_m}{\partial
+x_2} \quad \dots \quad \frac{\partial y_m}{\partial x_n} \\
 \end{bmatrix}
 \]</span> 常用特例：</p>
 <p>在分母布局下，假设<span class="math inline">\(\pmb{x}=[x_1 \quad x_2
@@ -281,16 +282,16 @@ a_{m1} \quad a_{m2} \quad \dots \quad a_{mm} \\
 \end{bmatrix}
 \]</span></p>
 <p>则 <span class="math display">\[
-\frac{\part \pmb{A} \pmb{x}}{\part \pmb{x}} = \pmb{A}^\text{T}
+\frac{\partial \pmb{A} \pmb{x}}{\partial \pmb{x}} = \pmb{A}^\text{T}
 \]</span> 而在<strong>分子布局</strong>下 <span class="math display">\[
-\frac{\part \pmb{A} \pmb{x}}{\part \pmb{x}} = \pmb{A}
+\frac{\partial \pmb{A} \pmb{x}}{\partial \pmb{x}} = \pmb{A}
 \]</span></p>
 <p>对二次型有： <span class="math display">\[
-\frac{\part \pmb{x}^\text{T} \pmb{A} \pmb{x}}{\part
+\frac{\partial \pmb{x}^\text{T} \pmb{A} \pmb{x}}{\partial
 \pmb{x}}=\pmb{A}\pmb{x}+\pmb{A}^\text{T}\pmb{x}
 \]</span> 特别的，当<span
 class="math inline">\(A\)</span>为对称矩阵时，<span
-class="math inline">\(\frac{\part \pmb{x}^T \pmb{A} \pmb{x}}{\part
+class="math inline">\(\frac{\partial \pmb{x}^T \pmb{A} \pmb{x}}{\partial
 \pmb{x}}=2 \pmb{A}\pmb{x}\)</span>。</p>
 <p><strong>注意：在公式推导的过程中必须要确定使用分母布局还是分子布局，混用两种布局会在编程仿真中出现矩阵维度不匹配的问题！！！</strong></p>
 <h2 id="矩阵求导的链式法则2">3. <a
@@ -302,17 +303,18 @@ target="_blank" rel="noopener" href="https://www.cnblogs.com/pinard/p/10825264.h
 <p>假设多个向量存在依赖关系，比如三个向量<span
 class="math inline">\(\pmb{x} \rightarrow \pmb{y} \rightarrow
 \pmb{z}\)</span>，则有下面的链式求导法则： <span class="math display">\[
-\frac{\part \pmb{z}}{\part \pmb{x}} = \frac{\part \pmb{z}}{\part
-\pmb{y}} \frac{\part \pmb{y}}{\part \pmb{x}}
+\frac{\partial \pmb{z}}{\partial \pmb{x}} = \frac{\partial
+\pmb{z}}{\partial \pmb{y}} \frac{\partial \pmb{y}}{\partial \pmb{x}}
 \]</span>
 该法则可以推广到更多的向量依赖关系，但要注意依赖关系中所有的变量都是向量，如果其中存在矩阵或者标量，则该链式法则不成立。</p>
 <p>假设有n个向量满足依赖关系：<span class="math inline">\(\pmb{y_1}
 \rightarrow \pmb{y_1} \rightarrow \dots \rightarrow
 \pmb{y_n}\)</span>，则有下面的链式求导法则： <span
 class="math display">\[
-\frac{\part \pmb{y_n}}{\part \pmb{y_1}} = \frac{\part \pmb{y_n}}{\part
-\pmb{y_{n-1}}} \frac{\part \pmb{y_{n-1}}}{\part \pmb{y_{n-1}}} \dots
-\frac{\part \pmb{y_2}}{\part \pmb{y_1}}
+\frac{\partial \pmb{y_n}}{\partial \pmb{y_1}} = \frac{\partial
+\pmb{y_n}}{\partial \pmb{y_{n-1}}} \frac{\partial
+\pmb{y_{n-1}}}{\partial \pmb{y_{n-1}}} \dots \frac{\partial
+\pmb{y_2}}{\partial \pmb{y_1}}
 \]</span></p>
 <h3 id="标量函数对向量求导的链式法则">3.2
 标量函数对向量求导的链式法则</h3>
@@ -320,15 +322,16 @@ class="math display">\[
 class="math inline">\(\pmb{x}、\pmb{y}\)</span>，它们满足依赖关系：<span
 class="math inline">\(\pmb{x} \rightarrow \pmb{y} \rightarrow
 z\)</span>，则有下面的链式求导法则： <span class="math display">\[
-\frac{\part z}{\part \pmb{x}} = (\frac{\part \pmb{y}}{\part
-\pmb{x}})^\text{T} \frac{\part z}{\part \pmb{y}}
+\frac{\partial z}{\partial \pmb{x}} = (\frac{\partial \pmb{y}}{\partial
+\pmb{x}})^\text{T} \frac{\partial z}{\partial \pmb{y}}
 \]</span> 如果是标量函数对多个向量求导，比如：<span
 class="math inline">\(\pmb{y_1} \rightarrow \pmb{y_1} \rightarrow \dots
 \rightarrow \pmb{y_n} \rightarrow z\)</span>，则其链式法则可表示为：
 <span class="math display">\[
-\frac{\part z}{\part \pmb{y_1}} = (\frac{\part \pmb{y_n}}{\part
-\pmb{y_{n-1}}} \frac{\part \pmb{y_{n-1}}}{\part \pmb{y_{n-1}}} \dots
-\frac{\part \pmb{y_2}}{\part \pmb{y_1}})^\text{T} \frac{\part z}{\part
+\frac{\partial z}{\partial \pmb{y_1}} = (\frac{\partial
+\pmb{y_n}}{\partial \pmb{y_{n-1}}} \frac{\partial
+\pmb{y_{n-1}}}{\partial \pmb{y_{n-1}}} \dots \frac{\partial
+\pmb{y_2}}{\partial \pmb{y_1}})^\text{T} \frac{\partial z}{\partial
 \pmb{y_n}}
 \]</span></p>
 <p>## 4. 矩阵导数的乘法公式</p>
@@ -338,13 +341,12 @@ class="math inline">\(\pmb{y}=u(x)\pmb{v}(x)\)</span>，其中<span
 class="math inline">\(u(x)\)</span>是关于标量<span
 class="math inline">\(x\)</span>的标量函数，<span
 class="math inline">\(\pmb{v}(x)\)</span>是关于标量<span
-class="math inline">\(x\)</span>的向量函数，则有如下求导公式： $$ {\part
-x} =
+class="math inline">\(x\)</span>的向量函数，则有如下求导公式： $$ {x} =
 =
 <span class="math display">\[\begin{bmatrix}
-\frac{\part u}{\part x} v_1 + u \frac{\part v_1}{\part x} \\
+\frac{\partial u}{\partial x} v_1 + u \frac{\partial v_1}{\partial x} \\
 \vdots \\
-\frac{\part u}{\part x} v_m + u \frac{\part v_m}{\part x}
+\frac{\partial u}{\partial x} v_m + u \frac{\partial v_m}{\partial x}
 \end{bmatrix}\]</span>
 <p>= + u $$</p>
 <h3 id="标量向量对向量求导">4.2 标量×向量对向量求导</h3>
@@ -355,24 +357,28 @@ class="math inline">\(\pmb{x}\)</span>的向量函数，<span
 class="math inline">\(\pmb{v}(\pmb{x})\)</span>是关于向量<span
 class="math inline">\(\pmb{x}\)</span>的向量函数，则有如下求导公式：
 <span class="math display">\[
-\frac{\part \pmb{y}} {\part \pmb{x} }
+\frac{\partial \pmb{y}} {\partial \pmb{x} }
 =
 \begin {bmatrix}
-\frac{\part y_1}{\part x_1} \dots \frac{\part y_1}{\part x_n} \\
+\frac{\partial y_1}{\partial x_1} \dots \frac{\partial y_1}{\partial
+x_n} \\
 \vdots \quad  \quad \quad  \vdots\\
-\frac{\part y_m}{\part x_n} \dots \frac{\part y_m}{\part x_n}
+\frac{\partial y_m}{\partial x_n} \dots \frac{\partial y_m}{\partial
+x_n}
 \end{bmatrix}
 =
 \begin{bmatrix}
-\frac{\part u}{\part x_1} v_1 + u \frac{\part v_1}{\part x_1} \dots
-\frac{\part u}{\part x_n} v_1 + u \frac{\part v_1}{\part x_n}\\
+\frac{\partial u}{\partial x_1} v_1 + u \frac{\partial v_1}{\partial
+x_1} \dots \frac{\partial u}{\partial x_n} v_1 + u \frac{\partial
+v_1}{\partial x_n}\\
 \vdots \quad  \quad \quad \quad \quad \quad \quad  \vdots\\
-\frac{\part u}{\part x_1} v_m + u \frac{\part v_m}{\part x_1} \dots
-\frac{\part u}{\part x_n} v_m + u \frac{\part v_m}{\part x_n}\\
+\frac{\partial u}{\partial x_1} v_m + u \frac{\partial v_m}{\partial
+x_1} \dots \frac{\partial u}{\partial x_n} v_m + u \frac{\partial
+v_m}{\partial x_n}\\
 \end{bmatrix}
 =
-\pmb{v} (\frac{\part u}{\part \pmb{x}})^\text{T} + u \frac{\part
-\pmb{v}}{\part \pmb{x}}
+\pmb{v} (\frac{\partial u}{\partial \pmb{x}})^\text{T} + u
+\frac{\partial \pmb{v}}{\partial \pmb{x}}
 \]</span></p>
 <h2 id="矩阵导数的除法公式">5. 矩阵导数的除法公式</h2>
 <h3 id="标量向量对标量求导-1">5.1 标量/向量对标量求导</h3>
@@ -381,14 +387,15 @@ class="math inline">\(\pmb{y}=\pmb{u}({x})/{v}({x})\)</span>，其中<span
 class="math inline">\(\pmb{u}(x)\)</span>是关于标量<span
 class="math inline">\({x}\)</span>的向量函数，<span
 class="math inline">\({v}({x})\)</span>是关于标量<span
-class="math inline">\({x}\)</span>的标量函数，则有如下求导公式： $$
-{\part x} =
+class="math inline">\({x}\)</span>的标量函数，则有如下求导公式： $$ {x}
+=
 =
 <span class="math display">\[\begin{bmatrix}
-\frac{1}{v^2}(\frac{\part u}{\part x} v_1 - u \frac{\part v_1}{\part x})
-\\
+\frac{1}{v^2}(\frac{\partial u}{\partial x} v_1 - u \frac{\partial
+v_1}{\partial x}) \\
 \vdots \\
-\frac{1}{v^2}(\frac{\part u}{\part x} v_m - u \frac{\part v_m}{\part x})
+\frac{1}{v^2}(\frac{\partial u}{\partial x} v_m - u \frac{\partial
+v_m}{\partial x})
 \end{bmatrix}\]</span>
 <p>= ( - u ) $$</p>
 <h3 id="标量向量对向量求导-1">5.2 标量/向量对向量求导</h3>
@@ -400,31 +407,33 @@ class="math inline">\({v}(\pmb{x})\)</span>是关于向量<span
 class="math inline">\(\pmb{x}\)</span>的标量函数，则有如下求导公式：
 <span class="math display">\[
 \begin{aligned}
-\frac{\part \pmb{y}} {\part \pmb{x} }
+\frac{\partial \pmb{y}} {\partial \pmb{x} }
 &amp;=
 \begin {bmatrix}
-\frac{\part y_1}{\part x_1} \dots \frac{\part y_1}{\part x_n} \\
+\frac{\partial y_1}{\partial x_1} \dots \frac{\partial y_1}{\partial
+x_n} \\
 \vdots \quad  \quad \quad  \vdots\\
-\frac{\part y_m}{\part x_n} \dots \frac{\part y_m}{\part x_n}
+\frac{\partial y_m}{\partial x_n} \dots \frac{\partial y_m}{\partial
+x_n}
 \end{bmatrix}
 =
 \begin{bmatrix}
-\frac{1}{v^2}(\frac{\part u}{\part x_1} v_1 - u \frac{\part v_1}{\part
-x_1})
+\frac{1}{v^2}(\frac{\partial u}{\partial x_1} v_1 - u \frac{\partial
+v_1}{\partial x_1})
 \dots
-\frac{1}{v^2}(\frac{\part u}{\part x_n} v_1 - u \frac{\part v_1}{\part
-x_n}) \\
+\frac{1}{v^2}(\frac{\partial u}{\partial x_n} v_1 - u \frac{\partial
+v_1}{\partial x_n}) \\
 \vdots \quad  \quad \quad \quad \quad \quad \quad  \vdots\\
-\frac{1}{v^2}(\frac{\part u}{\part x_1} v_m - u \frac{\part v_m}{\part
-x_1})
+\frac{1}{v^2}(\frac{\partial u}{\partial x_1} v_m - u \frac{\partial
+v_m}{\partial x_1})
 \dots
-\frac{1}{v^2}(\frac{\part u}{\part x_n} v_m - u \frac{\part v_m}{\part
-x_n}) \\
+\frac{1}{v^2}(\frac{\partial u}{\partial x_n} v_m - u \frac{\partial
+v_m}{\partial x_n}) \\
 \end{bmatrix}\\
 \\
 &amp;=
-\frac{1}{v^2}({v}\frac{\part \pmb{u}}{\part \pmb{x}} - \pmb{u}
-(\frac{\part {v}}{\part \pmb{x}})^\text{T})
+\frac{1}{v^2}({v}\frac{\partial \pmb{u}}{\partial \pmb{x}} - \pmb{u}
+(\frac{\partial {v}}{\partial \pmb{x}})^\text{T})
 \end{aligned}
 \]</span></p>
 
@@ -440,10 +449,13 @@ x_n}) \\
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2023/06/10/%E5%A7%BF%E6%80%81%E5%8A%A8%E5%8A%9B%E5%AD%A6/" rel="prev" title="姿态动力学及控制">
+                  <i class="fa fa-chevron-left"></i> 姿态动力学及控制
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/06/10/%E5%A7%BF%E6%80%81%E5%8A%A8%E5%8A%9B%E5%AD%A6/" rel="next" title="姿态动力学及控制">
-                  姿态动力学及控制 <i class="fa fa-chevron-right"></i>
+                <a href="/2023/06/10/Generalized-%CE%B1%E6%96%B9%E6%B3%95/" rel="next" title="Generalized-α方法">
+                  Generalized-α方法 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

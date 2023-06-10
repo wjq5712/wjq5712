@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wjq5712.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.17.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Generalized-α方法 简介 Gemeralized-α为Newmark法的变种，其数值阻尼效果更具针对性，抑制高频，保留低频。 动力学方程（二阶微分方程形式） \[ \begin{cases} \pmb{M}\ddot{\pmb{q}}+\pmb{\Phi}^\text{T}_{\pmb{q}}\pmb{\lambda}+\pmb{F}(\pmb{q})&#x3D;\pmb{Q}(\p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Generalized-α方法">
+<meta property="og:url" content="https://wjq5712.github.io/2023/06/10/Generalized-%CE%B1%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Generalized-α方法 简介 Gemeralized-α为Newmark法的变种，其数值阻尼效果更具针对性，抑制高频，保留低频。 动力学方程（二阶微分方程形式） \[ \begin{cases} \pmb{M}\ddot{\pmb{q}}+\pmb{\Phi}^\text{T}_{\pmb{q}}\pmb{\lambda}+\pmb{F}(\pmb{q})&#x3D;\pmb{Q}(\p">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/wjq5712/BlogImages/main/image-20230510161115737.png">
+<meta property="article:published_time" content="2023-06-10T09:02:40.000Z">
+<meta property="article:modified_time" content="2023-06-10T09:04:00.781Z">
+<meta property="article:author" content="Wu Jiaqi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/wjq5712/BlogImages/main/image-20230510161115737.png">
+
+
+<link rel="canonical" href="https://wjq5712.github.io/2023/06/10/Generalized-%CE%B1%E6%96%B9%E6%B3%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wjq5712.github.io/2023/06/10/Generalized-%CE%B1%E6%96%B9%E6%B3%95/","path":"2023/06/10/Generalized-α方法/","title":"Generalized-α方法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Generalized-α方法 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#generalized-%CE%B1%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">Generalized-α方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E5%8A%9B%E5%AD%A6%E6%96%B9%E7%A8%8B%E4%BA%8C%E9%98%B6%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">动力学方程（二阶微分方程形式）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%92%E6%8E%A8%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.3.</span> <span class="nav-text">递推形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.4.</span> <span class="nav-text">算法实现</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Wu Jiaqi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://wjq5712.github.io/2023/06/10/Generalized-%CE%B1%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wu Jiaqi">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Generalized-α方法 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Generalized-α方法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-06-10 17:02:40 / Modified: 17:04:00" itemprop="dateCreated datePublished" datetime="2023-06-10T17:02:40+08:00">2023-06-10</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="generalized-α方法">Generalized-α方法</h1>
+<h2 id="简介">简介</h2>
+<p>Gemeralized-α为Newmark法的变种，其数值阻尼效果更具针对性，抑制高频，保留低频。</p>
+<h2 id="动力学方程二阶微分方程形式">动力学方程（二阶微分方程形式）</h2>
+<p><span class="math display">\[
+\begin{cases}
+\pmb{M}\ddot{\pmb{q}}+\pmb{\Phi}^\text{T}_{\pmb{q}}\pmb{\lambda}+\pmb{F}(\pmb{q})=\pmb{Q}(\pmb{q})
+\\
+\pmb{\Phi}(\pmb{q},t)=\pmb{0}
+\end{cases}
+\]</span></p>
+<h2 id="递推形式">递推形式</h2>
+<p><span class="math display">\[
+\pmb{q}_{n+1}  = \pmb{q}_n + h\dot{\pmb{q}_n} + h^2
+(0.5-{\beta})\pmb{a}_n
++h^2 \beta \pmb{a}_{n+1} \\
+  \dot{\pmb{q}}_{n+1}  = \dot{\pmb{q}}_n + h(1-\gamma)\pmb{a}_n + h
+\gamma \pmb{a}_{n+1} \\
+\]</span></p>
+<p>式中，<span
+class="math inline">\(h\)</span>为每个时间步长的大小，<span
+class="math inline">\(\beta\)</span>、<span
+class="math inline">\(\gamma\)</span>为算法参数。引入类加速度参数<span
+class="math inline">\(\pmb{a}\)</span> <span class="math display">\[
+\begin{cases}
+(1-\alpha_m)\pmb{a}_{n+1}+\alpha_m\pmb{a}_n =
+(1-\alpha_f)\ddot{\pmb{q}}_{n+1}+\alpha_f\ddot{\pmb{q}}_n\\
+\pmb{a}_0=\ddot{\pmb{q}}_0
+\end{cases}
+\]</span> 算法参数为 <span class="math display">\[
+\alpha_m = \frac{2\rho-1}{\rho+1} \\
+\alpha_f = \frac{\rho}{\rho+1} \\
+\beta = 0.25(1+\alpha_f-\alpha_m)^2\\
+\gamma = 0.5 + \alpha_f - \alpha_m
+\]</span> 这里的<span
+class="math inline">\(\rho\)</span>的取值范围为<span
+class="math inline">\([0,1]\)</span>，决定了计算过程的能量耗散的大小。当<span
+class="math inline">\(\rho=0\)</span>时，算法的能量耗散最大；当<span
+class="math inline">\(\rho=1\)</span>时，算法不产生能量耗散。</p>
+<h2 id="算法实现">算法实现</h2>
+<p>step1：初始化状态量、广义α参数</p>
+<p>step2：状态预测 <span class="math display">\[
+\begin{aligned}
+\pmb{q}_{n+1}  &amp;= \pmb{q}_n + h\dot{\pmb{q}_n} + h^2
+(0.5-{\beta})\pmb{a}_n\\
+\dot{\pmb{q}}_{n+1}  &amp;= \dot{\pmb{q}}_n + h(1-\gamma)\pmb{a}_n \\
+\pmb{\lambda}_{n+1} &amp;= \pmb{0} \\
+\pmb{a}_{n+1} &amp;= (\alpha_f \ddot{\pmb{q}}_n - \alpha_m \pmb{a}_n) /
+(1 - \alpha_m)\\
+\pmb{q}_{n+1}  &amp;= \pmb{q}_{n+1}  + h^2 \beta \pmb{a}_{n+1} \\
+\dot{\pmb{q}}_{n+1}  &amp;= \dot{\pmb{q}}_{n+1} + h \gamma
+\pmb{a}_{n+1}\\
+\ddot{\pmb{q}}_{n+1} &amp;= \pmb{0}
+\end{aligned}
+\]</span> step3：残差计算 <span class="math display">\[
+\begin{aligned}
+\pmb{r}_{\pmb{q}} &amp;=
+\pmb{M}\ddot{\pmb{q}}_{n+1}+\pmb{\Phi}^\text{T}_{\pmb{q}}\pmb{\lambda}_{n+1}+\pmb{F}(\pmb{q}_{n+1})-\pmb{Q}(\pmb{q}_{n+1})
+\\
+\pmb{r}_{\pmb{\lambda}} &amp;= \pmb{\Phi}(\pmb{q}_{n+1},t)
+\end{aligned}
+\]</span> step4：残差矫正（牛顿-拉夫逊迭代） <span
+class="math display">\[
+\begin{bmatrix}
+\Delta\pmb{ q} \\
+\Delta\pmb{ \lambda}
+\end{bmatrix}
+=
+-\pmb{S}^{-1}_t
+\begin{bmatrix}
+\pmb{r_q} \\
+\pmb{r_{\lambda}}
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+\pmb{q}_{n+1} = \pmb{q}_{n+1} + \Delta \pmb{ q} \\
+\dot{\pmb{q}}_{n+1} = \dot{\pmb{q}}_{n+1} + \gamma&#39; \Delta \pmb{ q}
+\\
+\ddot{\pmb{q}}_{n+1} = \ddot{\pmb{q}}_{n+1} + \beta&#39; \Delta \pmb{ q}
+\\
+\pmb{\lambda}_{n+1} = \pmb{\lambda}_{n+1} + \Delta \pmb{ \lambda} \\
+\]</span></p>
+<p>其中 $$ ' = \ ' = \</p>
+_t =
+<span class="math display">\[\begin{bmatrix}
+(\beta &#39; \pmb{M} + \gamma &#39; \pmb{C}_t + \pmb{K}_t) &amp;
+\pmb{\Phi}^\text{T}_{\pmb{q}} \\
+\pmb{\Phi}_{\pmb{q}} &amp; \pmb{0}
+\end{bmatrix}\]</span>
+<p>$$</p>
+<p><span class="math display">\[
+\pmb{K}_t = \frac{\partial
+(\pmb{M}\ddot{\pmb{q}}-\pmb{\Phi}^\text{T}_{\pmb{q}}\pmb{\lambda}+\pmb{F}(\pmb{q})-\pmb{Q}(\pmb{q}))}{\partial
+\pmb{q}}\\
+\pmb{C}_t = \frac{\partial (\pmb{F}(\pmb{q})-\pmb{Q}(\pmb{q}))}{\partial
+\dot{\pmb{q}}}
+\]</span></p>
+<p>step5：更新类加速度变量 <span class="math display">\[
+\pmb{a}_{n+1} = \pmb{a}_{n+1} + \frac{1-\alpha_f}{1-\alpha_m}
+\ddot{\pmb{q}}_{n+1}
+\]</span> step6：回到step2循环迭代</p>
+<p>流程图如下：</p>
+<p><img src="https://raw.githubusercontent.com/wjq5712/BlogImages/main/image-20230510161115737.png" alt="image-20230510161115737" style="zoom:50%;" /></p>
+<blockquote>
+<p>[1] Arnold M, Brüls O. Convergence of the generalized-α scheme for
+constrained mechanical systems[J]. Multibody System Dynamics, 2007, 18:
+185-202.</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/" rel="prev" title="矩阵的导数运算">
+                  <i class="fa fa-chevron-left"></i> 矩阵的导数运算
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wu Jiaqi</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
