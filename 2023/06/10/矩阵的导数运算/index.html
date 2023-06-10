@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="矩阵的导数运算1. 标量方程对向量的导数假设一个标量方程：$$y&#x3D;f(\pmb{x})$$其中，$\boldsymbol{x}&#x3D;[x_1\quad x_2 \quad \cdots \quad x_n]^T$。 $y$对$\pmb{x}$的导数有分母布局和分子布局两种形式。 分母布局（Denominator layout），偏导的行数与分母相同：$$\frac{\part y}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="矩阵的导数运算1. 标量方程对向量的导数假设一个标量方程：$$y&#x3D;f(\pmb{x})$$其中，$\boldsymbol{x}&#x3D;[x_1\quad x_2 \quad \cdots \quad x_n]^T$。 $y$对$\pmb{x}$的导数有分母布局和分子布局两种形式。 分母布局（Denominator layout），偏导的行数与分母相同：$$\frac{\part y}">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-06-10T06:05:34.296Z">
+<meta property="article:modified_time" content="2023-04-04T01:37:30.727Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Hexo</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2023/06/10/AttitudeDynamics/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/06/10/hello-world/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/&text="><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/&title="><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/&is_video=false&description="><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: http://example.com/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/&title="><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/&title="><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/&title="><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/&title="><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/&name=&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/&t="><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97"><span class="toc-number">1.</span> <span class="toc-text">矩阵的导数运算</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A0%87%E9%87%8F%E6%96%B9%E7%A8%8B%E5%AF%B9%E5%90%91%E9%87%8F%E7%9A%84%E5%AF%BC%E6%95%B0"><span class="toc-number">1.1.</span> <span class="toc-text">1. 标量方程对向量的导数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%90%91%E9%87%8F%E6%96%B9%E7%A8%8B%E5%AF%B9%E5%90%91%E9%87%8F%E7%9A%84%E5%AF%BC%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">2. 向量方程对向量的导数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E6%AF%8D%E5%B8%83%E5%B1%80%E4%B8%8B%EF%BC%8C-pmb-y-%E5%AF%B9-pmb-x-%E7%9A%84%E5%AF%BC%E6%95%B0%E4%B8%BA%EF%BC%9A-frac-part-pmb-y-m-times-1-part-pmb-x-n-times-1-x3D-begin-bmatrix-frac-part-pmb-y-part-x-1-frac-part-pmb-y-part-x-2-vdots-frac-part-pmb-y-part-x-n-end-bmatrix"><span class="toc-number">2.</span> <span class="toc-text">分母布局下，$\pmb{y}$对$\pmb{x}$的导数为：$$\frac{\part \pmb{y}{m \times 1}}{\part \pmb{x}{n \times 1}}&#x3D;\begin{bmatrix}\frac{\part \pmb{y}}{\part x_1} \\frac{\part \pmb{y}}{\part x_2} \\vdots \\frac{\part \pmb{y}}{\part x_n} \\end{bmatrix}</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E5%AD%90%E5%B8%83%E5%B1%80%E5%90%8C%E7%90%86%EF%BC%8C%E7%BB%93%E6%9E%9C%E4%B8%BA%E5%88%86%E6%AF%8D%E5%B8%83%E5%B1%80%E7%9A%84%E8%BD%AC%E7%BD%AE%E3%80%82%E7%BB%93%E6%9E%9C%E5%A6%82%E4%B8%8B%EF%BC%9A-frac-part-pmb-y-m-times-1-part-pmb-x-n-times-1-x3D-begin-bmatrix-frac-part-pmb-y-part-x-1-frac-part-pmb-y-part-x-2-vdots-frac-part-pmb-y-part-x-n-end-bmatrix"><span class="toc-number">3.</span> <span class="toc-text">分子布局同理，结果为分母布局的转置。结果如下：$$\frac{\part \pmb{y}{m \times 1}}{\part \pmb{x}{n \times 1}}&#x3D;\begin{bmatrix}\frac{\part \pmb{y}}{\part x_1} \\frac{\part \pmb{y}}{\part x_2} \\vdots \\frac{\part \pmb{y}}{\part x_n} \\end{bmatrix}</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E7%9A%84%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99"><span class="toc-number">3.1.</span> <span class="toc-text">3. 矩阵求导的链式法则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%90%91%E9%87%8F%E5%87%BD%E6%95%B0%E5%AF%B9%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC%E7%9A%84%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99"><span class="toc-number">3.1.1.</span> <span class="toc-text">3.1 向量函数对向量求导的链式法则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E6%A0%87%E9%87%8F%E5%87%BD%E6%95%B0%E5%AF%B9%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC%E7%9A%84%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99"><span class="toc-number">3.1.2.</span> <span class="toc-text">3.2 标量函数对向量求导的链式法则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%9F%A9%E9%98%B5%E5%AF%BC%E6%95%B0%E7%9A%84%E4%B9%98%E6%B3%95%E5%85%AC%E5%BC%8F"><span class="toc-number">3.2.</span> <span class="toc-text">4. 矩阵导数的乘法公式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%A0%87%E9%87%8F%C3%97%E5%90%91%E9%87%8F%E5%AF%B9%E6%A0%87%E9%87%8F%E6%B1%82%E5%AF%BC"><span class="toc-number">3.2.1.</span> <span class="toc-text">4.1 标量×向量对标量求导</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%81%87%E8%AE%BE%E6%9C%89%E4%B8%80%E4%B8%AA%E5%90%91%E9%87%8F-pmb-y-x3D-u-x-pmb-v-x-%EF%BC%8C%E5%85%B6%E4%B8%AD-u-x-%E6%98%AF%E5%85%B3%E4%BA%8E%E6%A0%87%E9%87%8F-x-%E7%9A%84%E6%A0%87%E9%87%8F%E5%87%BD%E6%95%B0%EF%BC%8C-pmb-v-x-%E6%98%AF%E5%85%B3%E4%BA%8E%E6%A0%87%E9%87%8F-x-%E7%9A%84%E5%90%91%E9%87%8F%E5%87%BD%E6%95%B0%EF%BC%8C%E5%88%99%E6%9C%89%E5%A6%82%E4%B8%8B%E6%B1%82%E5%AF%BC%E5%85%AC%E5%BC%8F%EF%BC%9A-frac-part-pmb-y-part-x"><span class="toc-number">4.</span> <span class="toc-text">假设有一个向量$\pmb{y}&#x3D;u(x)\pmb{v}(x)$，其中$u(x)$是关于标量$x$的标量函数，$\pmb{v}(x)$是关于标量$x$的向量函数，则有如下求导公式：$$\frac{\part \pmb{y}} {\part x} </span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#x3D-begin-bmatrix-frac-part-u-part-x-v-1-u-frac-part-v-1-part-x-vdots-frac-part-u-part-x-v-m-u-frac-part-v-m-part-x-end-bmatrix"><span class="toc-number">5.</span> <span class="toc-text">&#x3D;\begin{bmatrix}\frac{\part u}{\part x} v_1 + u \frac{\part v_1}{\part x} \\vdots \\frac{\part u}{\part x} v_m + u \frac{\part v_m}{\part x}\end{bmatrix}</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%A0%87%E9%87%8F%C3%97%E5%90%91%E9%87%8F%E5%AF%B9%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC"><span class="toc-number">5.0.1.</span> <span class="toc-text">4.2 标量×向量对向量求导</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%81%87%E8%AE%BE%E6%9C%89%E4%B8%80%E4%B8%AA%E5%90%91%E9%87%8F-pmb-y-x3D-u-pmb-x-pmb-v-pmb-x-%EF%BC%8C%E5%85%B6%E4%B8%AD-u-pmb-x-%E6%98%AF%E5%85%B3%E4%BA%8E%E6%A0%87%E9%87%8F-pmb-x-%E7%9A%84%E5%90%91%E9%87%8F%E5%87%BD%E6%95%B0%EF%BC%8C-pmb-v-pmb-x-%E6%98%AF%E5%85%B3%E4%BA%8E%E5%90%91%E9%87%8F-pmb-x-%E7%9A%84%E5%90%91%E9%87%8F%E5%87%BD%E6%95%B0%EF%BC%8C%E5%88%99%E6%9C%89%E5%A6%82%E4%B8%8B%E6%B1%82%E5%AF%BC%E5%85%AC%E5%BC%8F%EF%BC%9A-frac-part-pmb-y-part-pmb-x"><span class="toc-number">6.</span> <span class="toc-text">假设有一个向量$\pmb{y}&#x3D;u(\pmb{x})\pmb{v}(\pmb{x})$，其中$u(\pmb{x})$是关于标量$\pmb{x}$的向量函数，$\pmb{v}(\pmb{x})$是关于向量$\pmb{x}$的向量函数，则有如下求导公式：$$\frac{\part \pmb{y}} {\part \pmb{x} }</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#begin-bmatrix-frac-part-y-1-part-x-1-dots-frac-part-y-1-part-x-n-vdots-quad-quad-quad-vdots-frac-part-y-m-part-x-n-dots-frac-part-y-m-part-x-n-end-bmatrix"><span class="toc-number">7.</span> <span class="toc-text">\begin {bmatrix}\frac{\part y_1}{\part x_1} \dots \frac{\part y_1}{\part x_n} \\vdots \quad  \quad \quad  \vdots\\frac{\part y_m}{\part x_n} \dots \frac{\part y_m}{\part x_n}\end{bmatrix}</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#begin-bmatrix-frac-part-u-part-x-1-v-1-u-frac-part-v-1-part-x-1-dots-frac-part-u-part-x-n-v-1-u-frac-part-v-1-part-x-n-vdots-quad-quad-quad-quad-quad-quad-quad-vdots-frac-part-u-part-x-1-v-m-u-frac-part-v-m-part-x-1-dots-frac-part-u-part-x-n-v-m-u-frac-part-v-m-part-x-n-end-bmatrix"><span class="toc-number">8.</span> <span class="toc-text">\begin{bmatrix}\frac{\part u}{\part x_1} v_1 + u \frac{\part v_1}{\part x_1} \dots \frac{\part u}{\part x_n} v_1 + u \frac{\part v_1}{\part x_n}\\vdots \quad  \quad \quad \quad \quad \quad \quad  \vdots\\frac{\part u}{\part x_1} v_m + u \frac{\part v_m}{\part x_1} \dots \frac{\part u}{\part x_n} v_m + u \frac{\part v_m}{\part x_n}\\end{bmatrix}</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%9F%A9%E9%98%B5%E5%AF%BC%E6%95%B0%E7%9A%84%E9%99%A4%E6%B3%95%E5%85%AC%E5%BC%8F"><span class="toc-number">8.1.</span> <span class="toc-text">5. 矩阵导数的除法公式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E6%A0%87%E9%87%8F-x2F-%E5%90%91%E9%87%8F%E5%AF%B9%E6%A0%87%E9%87%8F%E6%B1%82%E5%AF%BC"><span class="toc-number">8.1.1.</span> <span class="toc-text">5.1 标量&#x2F;向量对标量求导</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%81%87%E8%AE%BE%E6%9C%89%E4%B8%80%E4%B8%AA%E5%90%91%E9%87%8F-pmb-y-x3D-pmb-u-x-x2F-v-x-%EF%BC%8C%E5%85%B6%E4%B8%AD-pmb-u-x-%E6%98%AF%E5%85%B3%E4%BA%8E%E6%A0%87%E9%87%8F-x-%E7%9A%84%E5%90%91%E9%87%8F%E5%87%BD%E6%95%B0%EF%BC%8C-v-x-%E6%98%AF%E5%85%B3%E4%BA%8E%E6%A0%87%E9%87%8F-x-%E7%9A%84%E6%A0%87%E9%87%8F%E5%87%BD%E6%95%B0%EF%BC%8C%E5%88%99%E6%9C%89%E5%A6%82%E4%B8%8B%E6%B1%82%E5%AF%BC%E5%85%AC%E5%BC%8F%EF%BC%9A-frac-part-pmb-y-part-x"><span class="toc-number">9.</span> <span class="toc-text">假设有一个向量$\pmb{y}&#x3D;\pmb{u}({x})&#x2F;{v}({x})$，其中$\pmb{u}(x)$是关于标量${x}$的向量函数，${v}({x})$是关于标量${x}$的标量函数，则有如下求导公式：$$\frac{\part \pmb{y}} {\part x} </span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#x3D-begin-bmatrix-frac-1-v-2-frac-part-u-part-x-v-1-u-frac-part-v-1-part-x-vdots-frac-1-v-2-frac-part-u-part-x-v-m-u-frac-part-v-m-part-x-end-bmatrix"><span class="toc-number">10.</span> <span class="toc-text">&#x3D;\begin{bmatrix}\frac{1}{v^2}(\frac{\part u}{\part x} v_1 - u \frac{\part v_1}{\part x}) \\vdots \\frac{1}{v^2}(\frac{\part u}{\part x} v_m - u \frac{\part v_m}{\part x})\end{bmatrix}</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E6%A0%87%E9%87%8F-x2F-%E5%90%91%E9%87%8F%E5%AF%B9%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC"><span class="toc-number">10.0.1.</span> <span class="toc-text">5.2 标量&#x2F;向量对向量求导</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%81%87%E8%AE%BE%E6%9C%89%E4%B8%80%E4%B8%AA%E5%90%91%E9%87%8F-pmb-y-x3D-pmb-u-pmb-x-x2F-v-pmb-x-%EF%BC%8C%E5%85%B6%E4%B8%AD-pmb-u-pmb-x-%E6%98%AF%E5%85%B3%E4%BA%8E%E5%90%91%E9%87%8F-pmb-x-%E7%9A%84%E5%90%91%E9%87%8F%E5%87%BD%E6%95%B0%EF%BC%8C-v-pmb-x-%E6%98%AF%E5%85%B3%E4%BA%8E%E5%90%91%E9%87%8F-pmb-x-%E7%9A%84%E6%A0%87%E9%87%8F%E5%87%BD%E6%95%B0%EF%BC%8C%E5%88%99%E6%9C%89%E5%A6%82%E4%B8%8B%E6%B1%82%E5%AF%BC%E5%85%AC%E5%BC%8F%EF%BC%9A-begin-aligned-frac-part-pmb-y-part-pmb-x-amp-x3D-begin-bmatrix-frac-part-y-1-part-x-1-dots-frac-part-y-1-part-x-n-vdots-quad-quad-quad-vdots-frac-part-y-m-part-x-n-dots-frac-part-y-m-part-x-n-end-bmatrix"><span class="toc-number">11.</span> <span class="toc-text">假设有一个向量$\pmb{y}&#x3D;\pmb{u}(\pmb{x})&#x2F;{v}(\pmb{x})$，其中$\pmb{u}(\pmb{x})$是关于向量$\pmb{x}$的向量函数，${v}(\pmb{x})$是关于向量$\pmb{x}$的标量函数，则有如下求导公式：$$\begin{aligned}\frac{\part \pmb{y}} {\part \pmb{x} }&amp;&#x3D;\begin {bmatrix}\frac{\part y_1}{\part x_1} \dots \frac{\part y_1}{\part x_n} \\vdots \quad  \quad \quad  \vdots\\frac{\part y_m}{\part x_n} \dots \frac{\part y_m}{\part x_n}\end{bmatrix}</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">John Doe</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-06-10T06:05:34.296Z" class="dt-published" itemprop="datePublished">2023-06-10</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="矩阵的导数运算"><a href="#矩阵的导数运算" class="headerlink" title="矩阵的导数运算"></a><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1av4y1b7MM/?spm_id_from=333.1007.top_right_bar_window_history.content.click">矩阵的导数运算</a></h1><h2 id="1-标量方程对向量的导数"><a href="#1-标量方程对向量的导数" class="headerlink" title="1. 标量方程对向量的导数"></a>1. 标量方程对向量的导数</h2><p>假设一个标量方程：<br>$$<br>y&#x3D;f(\pmb{x})<br>$$<br>其中，$\boldsymbol{x}&#x3D;[x_1\quad x_2 \quad \cdots \quad x_n]^T$。</p>
+<p>$y$对$\pmb{x}$的导数有分母布局和分子布局两种形式。</p>
+<p>分母布局（Denominator layout），偏导的行数与分母相同：<br>$$<br>\frac{\part y}{\part \pmb{x}}&#x3D;<br>\begin{bmatrix}<br>\frac{\part y}{\part x_1} \<br>\frac{\part y}{\part x_2} \<br>\vdots \<br>\frac{\part y}{\part x_n}</p>
+<p>\end{bmatrix}<br>$$<br>分子布局（Numerator layout），偏导的行数与分子相同：<br>$$<br>\frac{\part y}{\part \pmb{x}}&#x3D;<br>\begin{bmatrix}<br>\frac{\part y}{\part x_1} \quad<br>\frac{\part y}{\part x_2} \quad<br>\cdots \quad<br>\frac{\part y}{\part x_n}</p>
+<p>\end{bmatrix}<br>$$<br>分子布局与分母布局的结果互为转置。</p>
+<h2 id="2-向量方程对向量的导数"><a href="#2-向量方程对向量的导数" class="headerlink" title="2. 向量方程对向量的导数"></a>2. 向量方程对向量的导数</h2><p>假设一个向量方程：<br>$$<br>\pmb{y} &#x3D; f(\pmb{x})<br>$$<br>其中，$\pmb{x}&#x3D;[x_1\quad x_2 \quad \cdots \quad x_n]^T$，$\pmb{y}&#x3D;[y_1 \quad y_2 \quad \cdots \quad y_m]^T$。</p>
+<h1 id="分母布局下，-pmb-y-对-pmb-x-的导数为：-frac-part-pmb-y-m-times-1-part-pmb-x-n-times-1-x3D-begin-bmatrix-frac-part-pmb-y-part-x-1-frac-part-pmb-y-part-x-2-vdots-frac-part-pmb-y-part-x-n-end-bmatrix"><a href="#分母布局下，-pmb-y-对-pmb-x-的导数为：-frac-part-pmb-y-m-times-1-part-pmb-x-n-times-1-x3D-begin-bmatrix-frac-part-pmb-y-part-x-1-frac-part-pmb-y-part-x-2-vdots-frac-part-pmb-y-part-x-n-end-bmatrix" class="headerlink" title="分母布局下，$\pmb{y}$对$\pmb{x}$的导数为：$$\frac{\part \pmb{y}{m \times 1}}{\part \pmb{x}{n \times 1}}&#x3D;\begin{bmatrix}\frac{\part \pmb{y}}{\part x_1} \\frac{\part \pmb{y}}{\part x_2} \\vdots \\frac{\part \pmb{y}}{\part x_n} \\end{bmatrix}"></a>分母布局下，$\pmb{y}$对$\pmb{x}$的导数为：<br>$$<br>\frac{\part \pmb{y}<em>{m \times 1}}{\part \pmb{x}</em>{n \times 1}}&#x3D;<br>\begin{bmatrix}<br>\frac{\part \pmb{y}}{\part x_1} \<br>\frac{\part \pmb{y}}{\part x_2} \<br>\vdots \<br>\frac{\part \pmb{y}}{\part x_n} \<br>\end{bmatrix}</h1><p>\begin{bmatrix}<br>\frac{\part y_1}{\part x_1} \quad \frac{\part y_2}{\part x_1} \quad \dots \quad \frac{\part y_m}{\part x_1} \<br>\frac{\part y_1}{\part x_2} \quad \frac{\part y_2}{\part x_2} \quad \dots \quad \frac{\part y_m}{\part x_2} \<br>\vdots \<br>\frac{\part y_1}{\part x_n} \quad \frac{\part y_2}{\part x_n} \quad \dots \quad \frac{\part y_m}{\part x_n} \<br>\end{bmatrix}<br>$$<br>第一步先使$\pmb{y}$分别对$x_1\dots ,x_n$求导，由于采用分母布局，因此结果为纵向展开，行数为$n$；第二步在对每一行继续按照分母布局展开，每一行的展开结果仍然是1行，列数为$m$。综上，分母布局下的最终求导结果为一个$m \times n$的矩阵。</p>
+<h1 id="分子布局同理，结果为分母布局的转置。结果如下：-frac-part-pmb-y-m-times-1-part-pmb-x-n-times-1-x3D-begin-bmatrix-frac-part-pmb-y-part-x-1-frac-part-pmb-y-part-x-2-vdots-frac-part-pmb-y-part-x-n-end-bmatrix"><a href="#分子布局同理，结果为分母布局的转置。结果如下：-frac-part-pmb-y-m-times-1-part-pmb-x-n-times-1-x3D-begin-bmatrix-frac-part-pmb-y-part-x-1-frac-part-pmb-y-part-x-2-vdots-frac-part-pmb-y-part-x-n-end-bmatrix" class="headerlink" title="分子布局同理，结果为分母布局的转置。结果如下：$$\frac{\part \pmb{y}{m \times 1}}{\part \pmb{x}{n \times 1}}&#x3D;\begin{bmatrix}\frac{\part \pmb{y}}{\part x_1} \\frac{\part \pmb{y}}{\part x_2} \\vdots \\frac{\part \pmb{y}}{\part x_n} \\end{bmatrix}"></a>分子布局同理，结果为分母布局的转置。结果如下：<br>$$<br>\frac{\part \pmb{y}<em>{m \times 1}}{\part \pmb{x}</em>{n \times 1}}&#x3D;<br>\begin{bmatrix}<br>\frac{\part \pmb{y}}{\part x_1} \<br>\frac{\part \pmb{y}}{\part x_2} \<br>\vdots \<br>\frac{\part \pmb{y}}{\part x_n} \<br>\end{bmatrix}</h1><p>\begin{bmatrix}<br>\frac{\part y_1}{\part x_1} \quad \frac{\part y_1}{\part x_2} \quad \dots \quad \frac{\part y_1}{\part x_n} \<br>\frac{\part y_2}{\part x_1} \quad \frac{\part y_2}{\part x_2} \quad \dots \quad \frac{\part y_2}{\part x_n} \<br>\vdots \<br>\frac{\part y_m}{\part x_1} \quad \frac{\part y_m}{\part x_2} \quad \dots \quad \frac{\part y_m}{\part x_n} \<br>\end{bmatrix}<br>$$<br>常用特例：</p>
+<p>在分母布局下，假设$\pmb{x}&#x3D;[x_1 \quad x_2 \quad \cdots \quad x_m]^T$，且<br>$$<br>\pmb{A}&#x3D;<br>\begin{bmatrix}<br>a_{11} \quad a_{12} \quad \dots \quad a_{1m} \<br>a_{21} \quad a_{22} \quad \dots \quad a_{2m} \<br>\vdots \<br>a_{m1} \quad a_{m2} \quad \dots \quad a_{mm} \<br>\end{bmatrix}<br>$$</p>
+<p>则<br>$$<br>\frac{\part \pmb{A} \pmb{x}}{\part \pmb{x}} &#x3D; \pmb{A}^\text{T}<br>$$<br>而在<strong>分子布局</strong>下<br>$$<br>\frac{\part \pmb{A} \pmb{x}}{\part \pmb{x}} &#x3D; \pmb{A}<br>$$</p>
+<p>对二次型有：<br>$$<br>\frac{\part \pmb{x}^\text{T} \pmb{A} \pmb{x}}{\part \pmb{x}}&#x3D;\pmb{A}\pmb{x}+\pmb{A}^\text{T}\pmb{x}<br>$$<br>特别的，当$A$为对称矩阵时，$\frac{\part \pmb{x}^T \pmb{A} \pmb{x}}{\part \pmb{x}}&#x3D;2 \pmb{A}\pmb{x}$。</p>
+<p><strong>注意：在公式推导的过程中必须要确定使用分母布局还是分子布局，混用两种布局会在编程仿真中出现矩阵维度不匹配的问题！！！</strong></p>
+<h2 id="3-矩阵求导的链式法则"><a href="#3-矩阵求导的链式法则" class="headerlink" title="3. 矩阵求导的链式法则"></a>3. <a target="_blank" rel="noopener" href="https://www.cnblogs.com/pinard/p/10825264.html">矩阵求导的链式法则</a></h2><p><strong>约定：标量函数对向量、矩阵求导采用分母布局，向量函数对向量求导采用分子布局。</strong></p>
+<p><strong>前者是为了保持求导结果与自变量向量维度相同，后者是为了与雅各比矩阵定义一致。</strong></p>
+<h3 id="3-1-向量函数对向量求导的链式法则"><a href="#3-1-向量函数对向量求导的链式法则" class="headerlink" title="3.1 向量函数对向量求导的链式法则"></a>3.1 向量函数对向量求导的链式法则</h3><p>假设多个向量存在依赖关系，比如三个向量$\pmb{x} \rightarrow \pmb{y} \rightarrow \pmb{z}$，则有下面的链式求导法则：<br>$$<br>\frac{\part \pmb{z}}{\part \pmb{x}} &#x3D; \frac{\part \pmb{z}}{\part \pmb{y}} \frac{\part \pmb{y}}{\part \pmb{x}}<br>$$<br>该法则可以推广到更多的向量依赖关系，但要注意依赖关系中所有的变量都是向量，如果其中存在矩阵或者标量，则该链式法则不成立。</p>
+<p>假设有n个向量满足依赖关系：$\pmb{y_1} \rightarrow \pmb{y_1} \rightarrow \dots \rightarrow \pmb{y_n}$，则有下面的链式求导法则：<br>$$<br>\frac{\part \pmb{y_n}}{\part \pmb{y_1}} &#x3D; \frac{\part \pmb{y_n}}{\part \pmb{y_{n-1}}} \frac{\part \pmb{y_{n-1}}}{\part \pmb{y_{n-1}}} \dots \frac{\part \pmb{y_2}}{\part \pmb{y_1}}<br>$$</p>
+<h3 id="3-2-标量函数对向量求导的链式法则"><a href="#3-2-标量函数对向量求导的链式法则" class="headerlink" title="3.2 标量函数对向量求导的链式法则"></a>3.2 标量函数对向量求导的链式法则</h3><p>假设有一个标量$z$和两个向量$\pmb{x}、\pmb{y}$，它们满足依赖关系：$\pmb{x} \rightarrow \pmb{y} \rightarrow z$，则有下面的链式求导法则：<br>$$<br>\frac{\part z}{\part \pmb{x}} &#x3D; (\frac{\part \pmb{y}}{\part \pmb{x}})^\text{T} \frac{\part z}{\part \pmb{y}}<br>$$<br>如果是标量函数对多个向量求导，比如：$\pmb{y_1} \rightarrow \pmb{y_1} \rightarrow \dots \rightarrow \pmb{y_n} \rightarrow z$，则其链式法则可表示为：<br>$$<br>\frac{\part z}{\part \pmb{y_1}} &#x3D; (\frac{\part \pmb{y_n}}{\part \pmb{y_{n-1}}} \frac{\part \pmb{y_{n-1}}}{\part \pmb{y_{n-1}}} \dots \frac{\part \pmb{y_2}}{\part \pmb{y_1}})^\text{T} \frac{\part z}{\part \pmb{y_n}}<br>$$</p>
+<h2 id="4-矩阵导数的乘法公式"><a href="#4-矩阵导数的乘法公式" class="headerlink" title="4. 矩阵导数的乘法公式"></a>4. 矩阵导数的乘法公式</h2><h3 id="4-1-标量×向量对标量求导"><a href="#4-1-标量×向量对标量求导" class="headerlink" title="4.1 标量×向量对标量求导"></a>4.1 标量×向量对标量求导</h3><h1 id="假设有一个向量-pmb-y-x3D-u-x-pmb-v-x-，其中-u-x-是关于标量-x-的标量函数，-pmb-v-x-是关于标量-x-的向量函数，则有如下求导公式：-frac-part-pmb-y-part-x"><a href="#假设有一个向量-pmb-y-x3D-u-x-pmb-v-x-，其中-u-x-是关于标量-x-的标量函数，-pmb-v-x-是关于标量-x-的向量函数，则有如下求导公式：-frac-part-pmb-y-part-x" class="headerlink" title="假设有一个向量$\pmb{y}&#x3D;u(x)\pmb{v}(x)$，其中$u(x)$是关于标量$x$的标量函数，$\pmb{v}(x)$是关于标量$x$的向量函数，则有如下求导公式：$$\frac{\part \pmb{y}} {\part x} "></a>假设有一个向量$\pmb{y}&#x3D;u(x)\pmb{v}(x)$，其中$u(x)$是关于标量$x$的标量函数，$\pmb{v}(x)$是关于标量$x$的向量函数，则有如下求导公式：<br>$$<br>\frac{\part \pmb{y}} {\part x} </h1><p>\begin {bmatrix}<br>\frac{\part y_1}{\part x} \<br>\vdots\<br>\frac{\part y_m}{\part x}<br>\end{bmatrix}</p>
+<h1 id="x3D-begin-bmatrix-frac-part-u-part-x-v-1-u-frac-part-v-1-part-x-vdots-frac-part-u-part-x-v-m-u-frac-part-v-m-part-x-end-bmatrix"><a href="#x3D-begin-bmatrix-frac-part-u-part-x-v-1-u-frac-part-v-1-part-x-vdots-frac-part-u-part-x-v-m-u-frac-part-v-m-part-x-end-bmatrix" class="headerlink" title="&#x3D;\begin{bmatrix}\frac{\part u}{\part x} v_1 + u \frac{\part v_1}{\part x} \\vdots \\frac{\part u}{\part x} v_m + u \frac{\part v_m}{\part x}\end{bmatrix}"></a>&#x3D;<br>\begin{bmatrix}<br>\frac{\part u}{\part x} v_1 + u \frac{\part v_1}{\part x} \<br>\vdots \<br>\frac{\part u}{\part x} v_m + u \frac{\part v_m}{\part x}<br>\end{bmatrix}</h1><p>\frac{\part u}{\part x}\pmb{v} + u \frac{\part \pmb{v}}{\part x}<br>$$</p>
+<h3 id="4-2-标量×向量对向量求导"><a href="#4-2-标量×向量对向量求导" class="headerlink" title="4.2 标量×向量对向量求导"></a>4.2 标量×向量对向量求导</h3><h1 id="假设有一个向量-pmb-y-x3D-u-pmb-x-pmb-v-pmb-x-，其中-u-pmb-x-是关于标量-pmb-x-的向量函数，-pmb-v-pmb-x-是关于向量-pmb-x-的向量函数，则有如下求导公式：-frac-part-pmb-y-part-pmb-x"><a href="#假设有一个向量-pmb-y-x3D-u-pmb-x-pmb-v-pmb-x-，其中-u-pmb-x-是关于标量-pmb-x-的向量函数，-pmb-v-pmb-x-是关于向量-pmb-x-的向量函数，则有如下求导公式：-frac-part-pmb-y-part-pmb-x" class="headerlink" title="假设有一个向量$\pmb{y}&#x3D;u(\pmb{x})\pmb{v}(\pmb{x})$，其中$u(\pmb{x})$是关于标量$\pmb{x}$的向量函数，$\pmb{v}(\pmb{x})$是关于向量$\pmb{x}$的向量函数，则有如下求导公式：$$\frac{\part \pmb{y}} {\part \pmb{x} }"></a>假设有一个向量$\pmb{y}&#x3D;u(\pmb{x})\pmb{v}(\pmb{x})$，其中$u(\pmb{x})$是关于标量$\pmb{x}$的向量函数，$\pmb{v}(\pmb{x})$是关于向量$\pmb{x}$的向量函数，则有如下求导公式：<br>$$<br>\frac{\part \pmb{y}} {\part \pmb{x} }</h1><h1 id="begin-bmatrix-frac-part-y-1-part-x-1-dots-frac-part-y-1-part-x-n-vdots-quad-quad-quad-vdots-frac-part-y-m-part-x-n-dots-frac-part-y-m-part-x-n-end-bmatrix"><a href="#begin-bmatrix-frac-part-y-1-part-x-1-dots-frac-part-y-1-part-x-n-vdots-quad-quad-quad-vdots-frac-part-y-m-part-x-n-dots-frac-part-y-m-part-x-n-end-bmatrix" class="headerlink" title="\begin {bmatrix}\frac{\part y_1}{\part x_1} \dots \frac{\part y_1}{\part x_n} \\vdots \quad  \quad \quad  \vdots\\frac{\part y_m}{\part x_n} \dots \frac{\part y_m}{\part x_n}\end{bmatrix}"></a>\begin {bmatrix}<br>\frac{\part y_1}{\part x_1} \dots \frac{\part y_1}{\part x_n} \<br>\vdots \quad  \quad \quad  \vdots\<br>\frac{\part y_m}{\part x_n} \dots \frac{\part y_m}{\part x_n}<br>\end{bmatrix}</h1><h1 id="begin-bmatrix-frac-part-u-part-x-1-v-1-u-frac-part-v-1-part-x-1-dots-frac-part-u-part-x-n-v-1-u-frac-part-v-1-part-x-n-vdots-quad-quad-quad-quad-quad-quad-quad-vdots-frac-part-u-part-x-1-v-m-u-frac-part-v-m-part-x-1-dots-frac-part-u-part-x-n-v-m-u-frac-part-v-m-part-x-n-end-bmatrix"><a href="#begin-bmatrix-frac-part-u-part-x-1-v-1-u-frac-part-v-1-part-x-1-dots-frac-part-u-part-x-n-v-1-u-frac-part-v-1-part-x-n-vdots-quad-quad-quad-quad-quad-quad-quad-vdots-frac-part-u-part-x-1-v-m-u-frac-part-v-m-part-x-1-dots-frac-part-u-part-x-n-v-m-u-frac-part-v-m-part-x-n-end-bmatrix" class="headerlink" title="\begin{bmatrix}\frac{\part u}{\part x_1} v_1 + u \frac{\part v_1}{\part x_1} \dots \frac{\part u}{\part x_n} v_1 + u \frac{\part v_1}{\part x_n}\\vdots \quad  \quad \quad \quad \quad \quad \quad  \vdots\\frac{\part u}{\part x_1} v_m + u \frac{\part v_m}{\part x_1} \dots \frac{\part u}{\part x_n} v_m + u \frac{\part v_m}{\part x_n}\\end{bmatrix}"></a>\begin{bmatrix}<br>\frac{\part u}{\part x_1} v_1 + u \frac{\part v_1}{\part x_1} \dots \frac{\part u}{\part x_n} v_1 + u \frac{\part v_1}{\part x_n}\<br>\vdots \quad  \quad \quad \quad \quad \quad \quad  \vdots\<br>\frac{\part u}{\part x_1} v_m + u \frac{\part v_m}{\part x_1} \dots \frac{\part u}{\part x_n} v_m + u \frac{\part v_m}{\part x_n}\<br>\end{bmatrix}</h1><p>\pmb{v} (\frac{\part u}{\part \pmb{x}})^\text{T} + u \frac{\part \pmb{v}}{\part \pmb{x}}<br>$$</p>
+<h2 id="5-矩阵导数的除法公式"><a href="#5-矩阵导数的除法公式" class="headerlink" title="5. 矩阵导数的除法公式"></a>5. 矩阵导数的除法公式</h2><h3 id="5-1-标量-x2F-向量对标量求导"><a href="#5-1-标量-x2F-向量对标量求导" class="headerlink" title="5.1 标量&#x2F;向量对标量求导"></a>5.1 标量&#x2F;向量对标量求导</h3><h1 id="假设有一个向量-pmb-y-x3D-pmb-u-x-x2F-v-x-，其中-pmb-u-x-是关于标量-x-的向量函数，-v-x-是关于标量-x-的标量函数，则有如下求导公式：-frac-part-pmb-y-part-x"><a href="#假设有一个向量-pmb-y-x3D-pmb-u-x-x2F-v-x-，其中-pmb-u-x-是关于标量-x-的向量函数，-v-x-是关于标量-x-的标量函数，则有如下求导公式：-frac-part-pmb-y-part-x" class="headerlink" title="假设有一个向量$\pmb{y}&#x3D;\pmb{u}({x})&#x2F;{v}({x})$，其中$\pmb{u}(x)$是关于标量${x}$的向量函数，${v}({x})$是关于标量${x}$的标量函数，则有如下求导公式：$$\frac{\part \pmb{y}} {\part x} "></a>假设有一个向量$\pmb{y}&#x3D;\pmb{u}({x})&#x2F;{v}({x})$，其中$\pmb{u}(x)$是关于标量${x}$的向量函数，${v}({x})$是关于标量${x}$的标量函数，则有如下求导公式：<br>$$<br>\frac{\part \pmb{y}} {\part x} </h1><p>\begin {bmatrix}<br>\frac{\part y_1}{\part x} \<br>\vdots\<br>\frac{\part y_m}{\part x}<br>\end{bmatrix}</p>
+<h1 id="x3D-begin-bmatrix-frac-1-v-2-frac-part-u-part-x-v-1-u-frac-part-v-1-part-x-vdots-frac-1-v-2-frac-part-u-part-x-v-m-u-frac-part-v-m-part-x-end-bmatrix"><a href="#x3D-begin-bmatrix-frac-1-v-2-frac-part-u-part-x-v-1-u-frac-part-v-1-part-x-vdots-frac-1-v-2-frac-part-u-part-x-v-m-u-frac-part-v-m-part-x-end-bmatrix" class="headerlink" title="&#x3D;\begin{bmatrix}\frac{1}{v^2}(\frac{\part u}{\part x} v_1 - u \frac{\part v_1}{\part x}) \\vdots \\frac{1}{v^2}(\frac{\part u}{\part x} v_m - u \frac{\part v_m}{\part x})\end{bmatrix}"></a>&#x3D;<br>\begin{bmatrix}<br>\frac{1}{v^2}(\frac{\part u}{\part x} v_1 - u \frac{\part v_1}{\part x}) \<br>\vdots \<br>\frac{1}{v^2}(\frac{\part u}{\part x} v_m - u \frac{\part v_m}{\part x})<br>\end{bmatrix}</h1><p>\frac{1}{v^2}( \frac{\part u}{\part x}\pmb{v} - u \frac{\part \pmb{v}}{\part x})<br>$$</p>
+<h3 id="5-2-标量-x2F-向量对向量求导"><a href="#5-2-标量-x2F-向量对向量求导" class="headerlink" title="5.2 标量&#x2F;向量对向量求导"></a>5.2 标量&#x2F;向量对向量求导</h3><h1 id="假设有一个向量-pmb-y-x3D-pmb-u-pmb-x-x2F-v-pmb-x-，其中-pmb-u-pmb-x-是关于向量-pmb-x-的向量函数，-v-pmb-x-是关于向量-pmb-x-的标量函数，则有如下求导公式：-begin-aligned-frac-part-pmb-y-part-pmb-x-amp-x3D-begin-bmatrix-frac-part-y-1-part-x-1-dots-frac-part-y-1-part-x-n-vdots-quad-quad-quad-vdots-frac-part-y-m-part-x-n-dots-frac-part-y-m-part-x-n-end-bmatrix"><a href="#假设有一个向量-pmb-y-x3D-pmb-u-pmb-x-x2F-v-pmb-x-，其中-pmb-u-pmb-x-是关于向量-pmb-x-的向量函数，-v-pmb-x-是关于向量-pmb-x-的标量函数，则有如下求导公式：-begin-aligned-frac-part-pmb-y-part-pmb-x-amp-x3D-begin-bmatrix-frac-part-y-1-part-x-1-dots-frac-part-y-1-part-x-n-vdots-quad-quad-quad-vdots-frac-part-y-m-part-x-n-dots-frac-part-y-m-part-x-n-end-bmatrix" class="headerlink" title="假设有一个向量$\pmb{y}&#x3D;\pmb{u}(\pmb{x})&#x2F;{v}(\pmb{x})$，其中$\pmb{u}(\pmb{x})$是关于向量$\pmb{x}$的向量函数，${v}(\pmb{x})$是关于向量$\pmb{x}$的标量函数，则有如下求导公式：$$\begin{aligned}\frac{\part \pmb{y}} {\part \pmb{x} }&amp;&#x3D;\begin {bmatrix}\frac{\part y_1}{\part x_1} \dots \frac{\part y_1}{\part x_n} \\vdots \quad  \quad \quad  \vdots\\frac{\part y_m}{\part x_n} \dots \frac{\part y_m}{\part x_n}\end{bmatrix}"></a>假设有一个向量$\pmb{y}&#x3D;\pmb{u}(\pmb{x})&#x2F;{v}(\pmb{x})$，其中$\pmb{u}(\pmb{x})$是关于向量$\pmb{x}$的向量函数，${v}(\pmb{x})$是关于向量$\pmb{x}$的标量函数，则有如下求导公式：<br>$$<br>\begin{aligned}<br>\frac{\part \pmb{y}} {\part \pmb{x} }<br>&amp;&#x3D;<br>\begin {bmatrix}<br>\frac{\part y_1}{\part x_1} \dots \frac{\part y_1}{\part x_n} \<br>\vdots \quad  \quad \quad  \vdots\<br>\frac{\part y_m}{\part x_n} \dots \frac{\part y_m}{\part x_n}<br>\end{bmatrix}</h1><p>\begin{bmatrix}<br>\frac{1}{v^2}(\frac{\part u}{\part x_1} v_1 - u \frac{\part v_1}{\part x_1})<br>\dots<br>\frac{1}{v^2}(\frac{\part u}{\part x_n} v_1 - u \frac{\part v_1}{\part x_n}) \<br>\vdots \quad  \quad \quad \quad \quad \quad \quad  \vdots\<br>\frac{1}{v^2}(\frac{\part u}{\part x_1} v_m - u \frac{\part v_m}{\part x_1})<br>\dots<br>\frac{1}{v^2}(\frac{\part u}{\part x_n} v_m - u \frac{\part v_m}{\part x_n}) \<br>\end{bmatrix}\<br>\<br>&amp;&#x3D;<br>\frac{1}{v^2}({v}\frac{\part \pmb{u}}{\part \pmb{x}} - \pmb{u} (\frac{\part {v}}{\part \pmb{x}})^\text{T})<br>\end{aligned}<br>$$</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97"><span class="toc-number">1.</span> <span class="toc-text">矩阵的导数运算</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A0%87%E9%87%8F%E6%96%B9%E7%A8%8B%E5%AF%B9%E5%90%91%E9%87%8F%E7%9A%84%E5%AF%BC%E6%95%B0"><span class="toc-number">1.1.</span> <span class="toc-text">1. 标量方程对向量的导数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%90%91%E9%87%8F%E6%96%B9%E7%A8%8B%E5%AF%B9%E5%90%91%E9%87%8F%E7%9A%84%E5%AF%BC%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">2. 向量方程对向量的导数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E6%AF%8D%E5%B8%83%E5%B1%80%E4%B8%8B%EF%BC%8C-pmb-y-%E5%AF%B9-pmb-x-%E7%9A%84%E5%AF%BC%E6%95%B0%E4%B8%BA%EF%BC%9A-frac-part-pmb-y-m-times-1-part-pmb-x-n-times-1-x3D-begin-bmatrix-frac-part-pmb-y-part-x-1-frac-part-pmb-y-part-x-2-vdots-frac-part-pmb-y-part-x-n-end-bmatrix"><span class="toc-number">2.</span> <span class="toc-text">分母布局下，$\pmb{y}$对$\pmb{x}$的导数为：$$\frac{\part \pmb{y}{m \times 1}}{\part \pmb{x}{n \times 1}}&#x3D;\begin{bmatrix}\frac{\part \pmb{y}}{\part x_1} \\frac{\part \pmb{y}}{\part x_2} \\vdots \\frac{\part \pmb{y}}{\part x_n} \\end{bmatrix}</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E5%AD%90%E5%B8%83%E5%B1%80%E5%90%8C%E7%90%86%EF%BC%8C%E7%BB%93%E6%9E%9C%E4%B8%BA%E5%88%86%E6%AF%8D%E5%B8%83%E5%B1%80%E7%9A%84%E8%BD%AC%E7%BD%AE%E3%80%82%E7%BB%93%E6%9E%9C%E5%A6%82%E4%B8%8B%EF%BC%9A-frac-part-pmb-y-m-times-1-part-pmb-x-n-times-1-x3D-begin-bmatrix-frac-part-pmb-y-part-x-1-frac-part-pmb-y-part-x-2-vdots-frac-part-pmb-y-part-x-n-end-bmatrix"><span class="toc-number">3.</span> <span class="toc-text">分子布局同理，结果为分母布局的转置。结果如下：$$\frac{\part \pmb{y}{m \times 1}}{\part \pmb{x}{n \times 1}}&#x3D;\begin{bmatrix}\frac{\part \pmb{y}}{\part x_1} \\frac{\part \pmb{y}}{\part x_2} \\vdots \\frac{\part \pmb{y}}{\part x_n} \\end{bmatrix}</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E7%9A%84%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99"><span class="toc-number">3.1.</span> <span class="toc-text">3. 矩阵求导的链式法则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%90%91%E9%87%8F%E5%87%BD%E6%95%B0%E5%AF%B9%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC%E7%9A%84%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99"><span class="toc-number">3.1.1.</span> <span class="toc-text">3.1 向量函数对向量求导的链式法则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E6%A0%87%E9%87%8F%E5%87%BD%E6%95%B0%E5%AF%B9%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC%E7%9A%84%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99"><span class="toc-number">3.1.2.</span> <span class="toc-text">3.2 标量函数对向量求导的链式法则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%9F%A9%E9%98%B5%E5%AF%BC%E6%95%B0%E7%9A%84%E4%B9%98%E6%B3%95%E5%85%AC%E5%BC%8F"><span class="toc-number">3.2.</span> <span class="toc-text">4. 矩阵导数的乘法公式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%A0%87%E9%87%8F%C3%97%E5%90%91%E9%87%8F%E5%AF%B9%E6%A0%87%E9%87%8F%E6%B1%82%E5%AF%BC"><span class="toc-number">3.2.1.</span> <span class="toc-text">4.1 标量×向量对标量求导</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%81%87%E8%AE%BE%E6%9C%89%E4%B8%80%E4%B8%AA%E5%90%91%E9%87%8F-pmb-y-x3D-u-x-pmb-v-x-%EF%BC%8C%E5%85%B6%E4%B8%AD-u-x-%E6%98%AF%E5%85%B3%E4%BA%8E%E6%A0%87%E9%87%8F-x-%E7%9A%84%E6%A0%87%E9%87%8F%E5%87%BD%E6%95%B0%EF%BC%8C-pmb-v-x-%E6%98%AF%E5%85%B3%E4%BA%8E%E6%A0%87%E9%87%8F-x-%E7%9A%84%E5%90%91%E9%87%8F%E5%87%BD%E6%95%B0%EF%BC%8C%E5%88%99%E6%9C%89%E5%A6%82%E4%B8%8B%E6%B1%82%E5%AF%BC%E5%85%AC%E5%BC%8F%EF%BC%9A-frac-part-pmb-y-part-x"><span class="toc-number">4.</span> <span class="toc-text">假设有一个向量$\pmb{y}&#x3D;u(x)\pmb{v}(x)$，其中$u(x)$是关于标量$x$的标量函数，$\pmb{v}(x)$是关于标量$x$的向量函数，则有如下求导公式：$$\frac{\part \pmb{y}} {\part x} </span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#x3D-begin-bmatrix-frac-part-u-part-x-v-1-u-frac-part-v-1-part-x-vdots-frac-part-u-part-x-v-m-u-frac-part-v-m-part-x-end-bmatrix"><span class="toc-number">5.</span> <span class="toc-text">&#x3D;\begin{bmatrix}\frac{\part u}{\part x} v_1 + u \frac{\part v_1}{\part x} \\vdots \\frac{\part u}{\part x} v_m + u \frac{\part v_m}{\part x}\end{bmatrix}</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%A0%87%E9%87%8F%C3%97%E5%90%91%E9%87%8F%E5%AF%B9%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC"><span class="toc-number">5.0.1.</span> <span class="toc-text">4.2 标量×向量对向量求导</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%81%87%E8%AE%BE%E6%9C%89%E4%B8%80%E4%B8%AA%E5%90%91%E9%87%8F-pmb-y-x3D-u-pmb-x-pmb-v-pmb-x-%EF%BC%8C%E5%85%B6%E4%B8%AD-u-pmb-x-%E6%98%AF%E5%85%B3%E4%BA%8E%E6%A0%87%E9%87%8F-pmb-x-%E7%9A%84%E5%90%91%E9%87%8F%E5%87%BD%E6%95%B0%EF%BC%8C-pmb-v-pmb-x-%E6%98%AF%E5%85%B3%E4%BA%8E%E5%90%91%E9%87%8F-pmb-x-%E7%9A%84%E5%90%91%E9%87%8F%E5%87%BD%E6%95%B0%EF%BC%8C%E5%88%99%E6%9C%89%E5%A6%82%E4%B8%8B%E6%B1%82%E5%AF%BC%E5%85%AC%E5%BC%8F%EF%BC%9A-frac-part-pmb-y-part-pmb-x"><span class="toc-number">6.</span> <span class="toc-text">假设有一个向量$\pmb{y}&#x3D;u(\pmb{x})\pmb{v}(\pmb{x})$，其中$u(\pmb{x})$是关于标量$\pmb{x}$的向量函数，$\pmb{v}(\pmb{x})$是关于向量$\pmb{x}$的向量函数，则有如下求导公式：$$\frac{\part \pmb{y}} {\part \pmb{x} }</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#begin-bmatrix-frac-part-y-1-part-x-1-dots-frac-part-y-1-part-x-n-vdots-quad-quad-quad-vdots-frac-part-y-m-part-x-n-dots-frac-part-y-m-part-x-n-end-bmatrix"><span class="toc-number">7.</span> <span class="toc-text">\begin {bmatrix}\frac{\part y_1}{\part x_1} \dots \frac{\part y_1}{\part x_n} \\vdots \quad  \quad \quad  \vdots\\frac{\part y_m}{\part x_n} \dots \frac{\part y_m}{\part x_n}\end{bmatrix}</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#begin-bmatrix-frac-part-u-part-x-1-v-1-u-frac-part-v-1-part-x-1-dots-frac-part-u-part-x-n-v-1-u-frac-part-v-1-part-x-n-vdots-quad-quad-quad-quad-quad-quad-quad-vdots-frac-part-u-part-x-1-v-m-u-frac-part-v-m-part-x-1-dots-frac-part-u-part-x-n-v-m-u-frac-part-v-m-part-x-n-end-bmatrix"><span class="toc-number">8.</span> <span class="toc-text">\begin{bmatrix}\frac{\part u}{\part x_1} v_1 + u \frac{\part v_1}{\part x_1} \dots \frac{\part u}{\part x_n} v_1 + u \frac{\part v_1}{\part x_n}\\vdots \quad  \quad \quad \quad \quad \quad \quad  \vdots\\frac{\part u}{\part x_1} v_m + u \frac{\part v_m}{\part x_1} \dots \frac{\part u}{\part x_n} v_m + u \frac{\part v_m}{\part x_n}\\end{bmatrix}</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%9F%A9%E9%98%B5%E5%AF%BC%E6%95%B0%E7%9A%84%E9%99%A4%E6%B3%95%E5%85%AC%E5%BC%8F"><span class="toc-number">8.1.</span> <span class="toc-text">5. 矩阵导数的除法公式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E6%A0%87%E9%87%8F-x2F-%E5%90%91%E9%87%8F%E5%AF%B9%E6%A0%87%E9%87%8F%E6%B1%82%E5%AF%BC"><span class="toc-number">8.1.1.</span> <span class="toc-text">5.1 标量&#x2F;向量对标量求导</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%81%87%E8%AE%BE%E6%9C%89%E4%B8%80%E4%B8%AA%E5%90%91%E9%87%8F-pmb-y-x3D-pmb-u-x-x2F-v-x-%EF%BC%8C%E5%85%B6%E4%B8%AD-pmb-u-x-%E6%98%AF%E5%85%B3%E4%BA%8E%E6%A0%87%E9%87%8F-x-%E7%9A%84%E5%90%91%E9%87%8F%E5%87%BD%E6%95%B0%EF%BC%8C-v-x-%E6%98%AF%E5%85%B3%E4%BA%8E%E6%A0%87%E9%87%8F-x-%E7%9A%84%E6%A0%87%E9%87%8F%E5%87%BD%E6%95%B0%EF%BC%8C%E5%88%99%E6%9C%89%E5%A6%82%E4%B8%8B%E6%B1%82%E5%AF%BC%E5%85%AC%E5%BC%8F%EF%BC%9A-frac-part-pmb-y-part-x"><span class="toc-number">9.</span> <span class="toc-text">假设有一个向量$\pmb{y}&#x3D;\pmb{u}({x})&#x2F;{v}({x})$，其中$\pmb{u}(x)$是关于标量${x}$的向量函数，${v}({x})$是关于标量${x}$的标量函数，则有如下求导公式：$$\frac{\part \pmb{y}} {\part x} </span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#x3D-begin-bmatrix-frac-1-v-2-frac-part-u-part-x-v-1-u-frac-part-v-1-part-x-vdots-frac-1-v-2-frac-part-u-part-x-v-m-u-frac-part-v-m-part-x-end-bmatrix"><span class="toc-number">10.</span> <span class="toc-text">&#x3D;\begin{bmatrix}\frac{1}{v^2}(\frac{\part u}{\part x} v_1 - u \frac{\part v_1}{\part x}) \\vdots \\frac{1}{v^2}(\frac{\part u}{\part x} v_m - u \frac{\part v_m}{\part x})\end{bmatrix}</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E6%A0%87%E9%87%8F-x2F-%E5%90%91%E9%87%8F%E5%AF%B9%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC"><span class="toc-number">10.0.1.</span> <span class="toc-text">5.2 标量&#x2F;向量对向量求导</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%81%87%E8%AE%BE%E6%9C%89%E4%B8%80%E4%B8%AA%E5%90%91%E9%87%8F-pmb-y-x3D-pmb-u-pmb-x-x2F-v-pmb-x-%EF%BC%8C%E5%85%B6%E4%B8%AD-pmb-u-pmb-x-%E6%98%AF%E5%85%B3%E4%BA%8E%E5%90%91%E9%87%8F-pmb-x-%E7%9A%84%E5%90%91%E9%87%8F%E5%87%BD%E6%95%B0%EF%BC%8C-v-pmb-x-%E6%98%AF%E5%85%B3%E4%BA%8E%E5%90%91%E9%87%8F-pmb-x-%E7%9A%84%E6%A0%87%E9%87%8F%E5%87%BD%E6%95%B0%EF%BC%8C%E5%88%99%E6%9C%89%E5%A6%82%E4%B8%8B%E6%B1%82%E5%AF%BC%E5%85%AC%E5%BC%8F%EF%BC%9A-begin-aligned-frac-part-pmb-y-part-pmb-x-amp-x3D-begin-bmatrix-frac-part-y-1-part-x-1-dots-frac-part-y-1-part-x-n-vdots-quad-quad-quad-vdots-frac-part-y-m-part-x-n-dots-frac-part-y-m-part-x-n-end-bmatrix"><span class="toc-number">11.</span> <span class="toc-text">假设有一个向量$\pmb{y}&#x3D;\pmb{u}(\pmb{x})&#x2F;{v}(\pmb{x})$，其中$\pmb{u}(\pmb{x})$是关于向量$\pmb{x}$的向量函数，${v}(\pmb{x})$是关于向量$\pmb{x}$的标量函数，则有如下求导公式：$$\begin{aligned}\frac{\part \pmb{y}} {\part \pmb{x} }&amp;&#x3D;\begin {bmatrix}\frac{\part y_1}{\part x_1} \dots \frac{\part y_1}{\part x_n} \\vdots \quad  \quad \quad  \vdots\\frac{\part y_m}{\part x_n} \dots \frac{\part y_m}{\part x_n}\end{bmatrix}</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/&text="><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/&title="><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/&is_video=false&description="><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: http://example.com/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/&title="><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/&title="><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/&title="><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/&title="><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/&name=&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/06/10/%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%97/&t="><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2023
+    John Doe
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
