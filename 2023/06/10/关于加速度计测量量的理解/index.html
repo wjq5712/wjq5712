@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wjq5712.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.17.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="1 简介 加速度计传感器是用来测量飞行器加速度并输出加速度信号的装置，加速度传感器又称为加速度计，是惯性导航中的重要惯性元件。 加速度计与陀螺仪一样，测得的是本体系相对于惯性系的加速度在本体系下的分量（这句话存在着一定的问题，后面会解释）。 2 加速度计模型  加速度计的原理以认为是上图所示的模型，加速度计外壳（黄色部分）与刚体固连，加速度计外壳通过绳子与内部的小球相连。物体在自由移动时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于加速度计测量量的理解">
+<meta property="og:url" content="https://wjq5712.github.io/2023/06/10/%E5%85%B3%E4%BA%8E%E5%8A%A0%E9%80%9F%E5%BA%A6%E8%AE%A1%E6%B5%8B%E9%87%8F%E9%87%8F%E7%9A%84%E7%90%86%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1 简介 加速度计传感器是用来测量飞行器加速度并输出加速度信号的装置，加速度传感器又称为加速度计，是惯性导航中的重要惯性元件。 加速度计与陀螺仪一样，测得的是本体系相对于惯性系的加速度在本体系下的分量（这句话存在着一定的问题，后面会解释）。 2 加速度计模型  加速度计的原理以认为是上图所示的模型，加速度计外壳（黄色部分）与刚体固连，加速度计外壳通过绳子与内部的小球相连。物体在自由移动时">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-06-10T10:16:11.000Z">
+<meta property="article:modified_time" content="2023-06-10T10:17:00.221Z">
+<meta property="article:author" content="Wu Jiaqi">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://wjq5712.github.io/2023/06/10/%E5%85%B3%E4%BA%8E%E5%8A%A0%E9%80%9F%E5%BA%A6%E8%AE%A1%E6%B5%8B%E9%87%8F%E9%87%8F%E7%9A%84%E7%90%86%E8%A7%A3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wjq5712.github.io/2023/06/10/%E5%85%B3%E4%BA%8E%E5%8A%A0%E9%80%9F%E5%BA%A6%E8%AE%A1%E6%B5%8B%E9%87%8F%E9%87%8F%E7%9A%84%E7%90%86%E8%A7%A3/","path":"2023/06/10/关于加速度计测量量的理解/","title":"关于加速度计测量量的理解"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>关于加速度计测量量的理解 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+      <img class="custom-logo-image" src="https://raw.githubusercontent.com/wjq5712/BlogImages/main/logo.png" alt="Hexo">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">1 简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A0%E9%80%9F%E5%BA%A6%E8%AE%A1%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">2 加速度计模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8F%90%E5%87%BA%E4%BA%94%E4%B8%AA%E9%97%AE%E9%A2%98%E5%9C%BA%E6%99%AF"><span class="nav-number">3.</span> <span class="nav-text">3 提出五个问题场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%B9%E5%8A%A0%E9%80%9F%E5%BA%A6%E8%AE%A1%E6%B5%8B%E9%87%8F%E5%80%BC%E7%9A%84%E4%B8%89%E7%A7%8D%E8%A7%A3%E9%87%8A%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">4
+对加速度计测量值的三种解释方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A0%E9%80%9F%E5%BA%A6%E8%AE%A1%E5%8E%9F%E7%90%86%E8%A7%A3%E9%87%8A%E6%B3%95"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 加速度计原理解释法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%83%AF%E6%80%A7%E5%8A%9B%E7%B3%BB%E5%88%86%E8%A7%A3%E8%A7%A3%E9%87%8A%E6%B3%95"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 惯性力系分解解释法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%AF%B9%E5%8A%A0%E9%80%9F%E5%BA%A6%E8%A7%A3%E9%87%8A%E6%B3%95"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 相对加速度解释法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C"><span class="nav-number">5.</span> <span class="nav-text">5 实验</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Wu Jiaqi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://wjq5712.github.io/2023/06/10/%E5%85%B3%E4%BA%8E%E5%8A%A0%E9%80%9F%E5%BA%A6%E8%AE%A1%E6%B5%8B%E9%87%8F%E9%87%8F%E7%9A%84%E7%90%86%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wu Jiaqi">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="关于加速度计测量量的理解 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          关于加速度计测量量的理解
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-06-10 18:16:11 / Modified: 18:17:00" itemprop="dateCreated datePublished" datetime="2023-06-10T18:16:11+08:00">2023-06-10</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="简介">1 简介</h1>
+<p>加速度计传感器是用来测量飞行器加速度并输出加速度信号的装置，加速度传感器又称为加速度计，是惯性导航中的重要惯性元件。</p>
+<p>加速度计与陀螺仪一样，测得的是本体系相对于惯性系的加速度在本体系下的分量（这句话存在着一定的问题，后面会解释）。</p>
+<h1 id="加速度计模型">2 加速度计模型</h1>
+<p><img
+src="https://raw.githubusercontent.com/wjq5712/BlogImages/main/Pasted%2520image%252020230609165212.png" /></p>
+<p>加速度计的原理以认为是上图所示的模型，加速度计外壳（黄色部分）与刚体固连，加速度计外壳通过绳子与内部的小球相连。物体在自由移动时，<strong>小球对绳子的拉力的合力除以小球的质量，就是加速度计测量到的值</strong>。</p>
+<h1 id="提出五个问题场景">3 提出五个问题场景</h1>
+<p>前提条件：设定向右为正方向，向上为正方向。</p>
+<p>1、物体静止摆放到桌面上时，加速度计测量值是多少？ 2、物体以10<span
+class="math inline">\(m/s^2\)</span>的加速度向上运动时，加速度计测量值是多少？
+3、物体自由落体时，加速度计的测量值是多少？ 4、物体以10<span
+class="math inline">\(m/s^2\)</span>向右运动时，加速度计在水平方向的测量值为多少？
+5、物体绕轨道转动时，加速度计的测量值是多少？</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/wjq5712/BlogImages/main/Pasted%20image%2020230609172116.png"
+alt="Pasted image 20230609172116" />
+<figcaption aria-hidden="true">Pasted image 20230609172116</figcaption>
+</figure>
+<h1 id="对加速度计测量值的三种解释方法">4
+对加速度计测量值的三种解释方法</h1>
+<h2 id="加速度计原理解释法">4.1 加速度计原理解释法</h2>
+<p>根据加速度计原理，物体小球对绳子的拉力除以小球的质量，就是加速度计测量得到的值，为了更好的建立力与加速度之间的关系，不妨设小球的质量为1kg，重力加速度设为10<span
+class="math inline">\(m/s^2\)</span>则可以得到：</p>
+<p>①静止状态下，小球对绳子的拉力等于小球的重力，因此为10N，方向向下，加速度计测得的值就是-10<span
+class="math inline">\(m/s^2\)</span>。 <img
+src="https://raw.githubusercontent.com/wjq5712/BlogImages/main/Pasted%20image%2020230609172734.png"
+alt="Pasted image 20230609172734" /></p>
+<p>②物体以10<span
+class="math inline">\(m/s^2\)</span>的加速度向上运动时，对球来说，球的加速度也是10<span
+class="math inline">\(m/s^2\)</span>，因此对球运用牛顿第二定律。绳子对球的拉力为<span
+class="math inline">\(F\)</span>。 <img
+src="https://raw.githubusercontent.com/wjq5712/BlogImages/main/Pasted%2520image%252020230609173255.png"
+alt="123" /> <span class="math display">\[
+F-mg=ma
+\]</span></p>
+<p><span class="math display">\[
+F=mg+ma=20N
+\]</span></p>
+<p>则球对绳子的拉力<span
+class="math inline">\(F&#39;\)</span>为-20N，加速度计测得的值就为-20<span
+class="math inline">\(m/s^2\)</span>。</p>
+<p>③物体自由落体时，球的加速度为重力加速度，球只受重力，绳子上的力为0，加速度计测得的值也为0。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/wjq5712/BlogImages/main/Pasted%20image%2020230609173851.png"
+alt="Pasted image 20230609173851" />
+<figcaption aria-hidden="true">Pasted image 20230609173851</figcaption>
+</figure>
+<p>④物体以10<span
+class="math inline">\(m/s^2\)</span>向右运动时，球的加速度也为10<span
+class="math inline">\(m/s^2\)</span>，建立牛顿第二定律方程，绳子对球的拉力为<span
+class="math inline">\(F\)</span>。</p>
+<p><img
+src="https://raw.githubusercontent.com/wjq5712/BlogImages/main/you.png"
+alt="you" /> <span class="math display">\[
+F=ma=10N
+\]</span> 则球对绳子的拉力<span
+class="math inline">\(F&#39;\)</span>为-10N，加速度计测得的值就为-10<span
+class="math inline">\(m/s^2\)</span>。</p>
+<p>⑤物体在空间中绕地球轨道运动时，矢径方向，物体向心加速度为g，此时绳子的拉力为0，自然加速度计测得的值也为0；</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/wjq5712/BlogImages/main/Pasted%20image%2020230609173906.png"
+alt="Pasted image 20230609173906" />
+<figcaption aria-hidden="true">Pasted image 20230609173906</figcaption>
+</figure>
+<p>注意：可以看到，①②③⑤这几种情况就与定义相冲突了，<strong>加速度计与陀螺仪一样，测得的是本体系相对于惯性系的加速度在本体系下的分量</strong>，但这几种情况下加速度计的实际测量值并代表物体在惯性系的得实际加速度，要想获得实际的加速度，必须要与物体的重力加速做一个组合，这种组合方式是什么样的呢？这就引入了第二种解释方式。</p>
+<h2 id="惯性力系分解解释法">4.2 惯性力系分解解释法</h2>
+<p>以②号问题为例，当我们对小球做力系分析，可以得到：</p>
+<p><span class="math display">\[
+F+mg=ma
+\]</span> 此时力与加速度都是带符号的值，与坐标系正方向定义相关。</p>
+<p>将所有项移到左边</p>
+<p><span class="math display">\[
+F+mg-ma=0
+\]</span> 式中<span
+class="math inline">\(mg-ma\)</span>即为加速度计测量值。</p>
+<p>将问题②带入上式：</p>
+<p><span class="math display">\[
+mg-ma=-10-10=-20
+\]</span> 加速度计测得的值就为-20<span
+class="math inline">\(m/s^2\)</span>。</p>
+<p>若想得到物体相对于惯性系实际的加速度，则有 <span
+class="math display">\[
+a=\frac{mg-Value_{\text{加速度计测量}}}{m}=\frac{-10-(-20)}{1}=10m/s^2
+\]</span>
+其他问题同理，这样就建立了<strong>加速度计测量值</strong>与<strong>物体相对于惯性系的加速度</strong>两者之间的关系。</p>
+<p>那为什么加速度计测量的值是<span
+class="math inline">\(mg-ma\)</span>呢？这引入第三种解释方法</p>
+<h2 id="相对加速度解释法">4.3 相对加速度解释法</h2>
+<p>同样以②号问题为例，我们认为加速度计外壳与小球是两个独立的个体，加速度计的测量值实际上是球相对于外壳的加速度。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/wjq5712/BlogImages/main/Pasted%2520image%252020230609175538.png"
+alt="Pasted image 20230609175538" />
+<figcaption aria-hidden="true">Pasted image 20230609175538</figcaption>
+</figure>
+<p>假设球漂浮在空中静止，当外壳以a=10<span
+class="math inline">\(m/s^2\)</span>加速度向上运动时，球相对于壳的加速度就是-a=-10<span
+class="math inline">\(m/s^2\)</span>，负号代表方向，
+但球是会自由下落的，因此球相对于壳的加速度还要加上球本身下落的重力加速度，因此，加速度计测量的值就变成了<span
+class="math inline">\(-a+g=-10+(-10)=-20\)</span>，自然也就解释了为什么<span
+class="math inline">\(Value_{\text{加速度计测量}}=g-a\)</span>了。</p>
+<h1 id="实验">5 实验</h1>
+<p>实际上，当我们使用真的加速度计模块时，确实是与理论解释是一致的。</p>
+<p>读者可以尝试解释一下下图中物体的运动状态（物体只在垂直方向上运动）</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/wjq5712/BlogImages/main/ea3f09a82bc028fb4ebb3ff93ab7e67.png"
+alt="ea3f09a82bc028fb4ebb3ff93ab7e67" />
+<figcaption
+aria-hidden="true">ea3f09a82bc028fb4ebb3ff93ab7e67</figcaption>
+</figure>
+<p>答案：物体先静止，然后向上加速，最后逐渐减速到速度为0，重新静止。注意</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/06/10/Generalized-%CE%B1%E6%96%B9%E6%B3%95/" rel="prev" title="Generalized-α方法">
+                  <i class="fa fa-chevron-left"></i> Generalized-α方法
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wu Jiaqi</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
