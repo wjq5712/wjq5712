@@ -28,7 +28,7 @@
 <meta property="og:description" content="矩阵的导数运算 1. 标量方程对向量的导数 假设一个标量方程： \[ y&#x3D;f(\pmb{x}) \] 其中，\(\boldsymbol{x}&#x3D;[x_1\quad x_2 \quad \cdots \quad x_n]^T\)。 \(y\)对\(\pmb{x}\)的导数有分母布局和分子布局两种形式。 分母布局（Denominator layout），偏导的行数与分母相同： \[ \f">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-06-10T08:58:07.000Z">
-<meta property="article:modified_time" content="2023-06-10T08:58:34.109Z">
+<meta property="article:modified_time" content="2023-06-12T09:29:36.444Z">
 <meta property="article:author" content="Wu Jiaqi">
 <meta name="twitter:card" content="summary">
 
@@ -106,9 +106,9 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%971"><span class="nav-number">1.</span> <span class="nav-text">矩阵的导数运算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E9%87%8F%E6%96%B9%E7%A8%8B%E5%AF%B9%E5%90%91%E9%87%8F%E7%9A%84%E5%AF%BC%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">1. 标量方程对向量的导数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E6%96%B9%E7%A8%8B%E5%AF%B9%E5%90%91%E9%87%8F%E7%9A%84%E5%AF%BC%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">2. 向量方程对向量的导数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E7%9A%84%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%992"><span class="nav-number">1.3.</span> <span class="nav-text">3. 矩阵求导的链式法则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E5%87%BD%E6%95%B0%E5%AF%B9%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC%E7%9A%84%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1
-向量函数对向量求导的链式法则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E9%87%8F%E5%87%BD%E6%95%B0%E5%AF%B9%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC%E7%9A%84%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2
-标量函数对向量求导的链式法则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E9%87%8F%E5%90%91%E9%87%8F%E5%AF%B9%E6%A0%87%E9%87%8F%E6%B1%82%E5%AF%BC"><span class="nav-number">1.3.3.</span> <span class="nav-text">4.1 标量×向量对标量求导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E9%87%8F%E5%90%91%E9%87%8F%E5%AF%B9%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC"><span class="nav-number">1.3.4.</span> <span class="nav-text">4.2 标量×向量对向量求导</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E5%AF%BC%E6%95%B0%E7%9A%84%E9%99%A4%E6%B3%95%E5%85%AC%E5%BC%8F"><span class="nav-number">1.4.</span> <span class="nav-text">5. 矩阵导数的除法公式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E9%87%8F%E5%90%91%E9%87%8F%E5%AF%B9%E6%A0%87%E9%87%8F%E6%B1%82%E5%AF%BC-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">5.1 标量&#x2F;向量对标量求导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E9%87%8F%E5%90%91%E9%87%8F%E5%AF%B9%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC-1"><span class="nav-number">1.4.2.</span> <span class="nav-text">5.2 标量&#x2F;向量对向量求导</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0%E8%BF%90%E7%AE%971"><span class="nav-number">1.</span> <span class="nav-text">矩阵的导数运算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E9%87%8F%E6%96%B9%E7%A8%8B%E5%AF%B9%E5%90%91%E9%87%8F%E7%9A%84%E5%AF%BC%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">1. 标量方程对向量的导数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E9%87%8F%E6%96%B9%E7%A8%8B%E5%AF%B9%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AF%BC%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">2. 标量方程对矩阵的导数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E6%96%B9%E7%A8%8B%E5%AF%B9%E5%90%91%E9%87%8F%E7%9A%84%E5%AF%BC%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">3. 向量方程对向量的导数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E7%9A%84%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%992"><span class="nav-number">1.4.</span> <span class="nav-text">3. 矩阵求导的链式法则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E5%87%BD%E6%95%B0%E5%AF%B9%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC%E7%9A%84%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99"><span class="nav-number">1.4.1.</span> <span class="nav-text">3.1
+向量函数对向量求导的链式法则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E9%87%8F%E5%87%BD%E6%95%B0%E5%AF%B9%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC%E7%9A%84%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99"><span class="nav-number">1.4.2.</span> <span class="nav-text">3.2
+标量函数对向量求导的链式法则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E9%87%8F%E5%90%91%E9%87%8F%E5%AF%B9%E6%A0%87%E9%87%8F%E6%B1%82%E5%AF%BC"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.1 标量×向量对标量求导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E9%87%8F%E5%90%91%E9%87%8F%E5%AF%B9%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC"><span class="nav-number">1.4.4.</span> <span class="nav-text">4.2 标量×向量对向量求导</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E5%AF%BC%E6%95%B0%E7%9A%84%E9%99%A4%E6%B3%95%E5%85%AC%E5%BC%8F"><span class="nav-number">1.5.</span> <span class="nav-text">5. 矩阵导数的除法公式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E9%87%8F%E5%90%91%E9%87%8F%E5%AF%B9%E6%A0%87%E9%87%8F%E6%B1%82%E5%AF%BC-1"><span class="nav-number">1.5.1.</span> <span class="nav-text">5.1 标量&#x2F;向量对标量求导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E9%87%8F%E5%90%91%E9%87%8F%E5%AF%B9%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC-1"><span class="nav-number">1.5.2.</span> <span class="nav-text">5.2 标量&#x2F;向量对向量求导</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -121,9 +121,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">posts</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
       </div>
   </nav>
 </div>
@@ -177,9 +181,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2023-06-10 16:58:07 / Modified: 16:58:34" itemprop="dateCreated datePublished" datetime="2023-06-10T16:58:07+08:00">2023-06-10</time>
+      <time title="Created: 2023-06-10 16:58:07" itemprop="dateCreated datePublished" datetime="2023-06-10T16:58:07+08:00">2023-06-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-06-12 17:29:36" itemprop="dateModified" datetime="2023-06-12T17:29:36+08:00">2023-06-12</time>
     </span>
 
   
@@ -220,7 +230,23 @@ class="math display">\[
 \frac{\partial y}{\partial x_n}
 \end{bmatrix}
 \]</span> 分子布局与分母布局的结果互为转置。</p>
-<h2 id="向量方程对向量的导数">2. 向量方程对向量的导数</h2>
+<h2 id="标量方程对矩阵的导数">2. 标量方程对矩阵的导数</h2>
+<p>假设一个标量方程： <span class="math display">\[
+y=f(\pmb{X})
+\]</span> 其中， <span class="math display">\[
+\pmb{X}=
+\begin{bmatrix}
+X_{11} \quad X_{12} \quad \dots \quad X_{1n} \\
+X_{21} \quad X_{22} \quad \dots \quad X_{2n} \\
+\vdots
+X_{m1} \quad X_{m2} \quad \dots \quad X_{mn} \\
+\end{bmatrix}
+\]</span> 则<span class="math inline">\(y\)</span>对<span
+class="math inline">\(\pmb{X}\)</span>的导数为： <span
+class="math display">\[
+\
+\]</span></p>
+<h2 id="向量方程对向量的导数">3. 向量方程对向量的导数</h2>
 <p>假设一个向量方程： <span class="math display">\[
 \pmb{y} = f(\pmb{x})
 \]</span> 其中，<span class="math inline">\(\pmb{x}=[x_1\quad x_2 \quad
