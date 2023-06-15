@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wjq5712.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.17.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="0 前言 ”神经网络就是个工具，我们只需要会用就行了。” ”底层原理我们不用懂，那是学计算机的研究的。” “神经网络是科学也是玄学，调参就是看运气的。” …… 作为一个非计算机专业的学生，在涉及人工智能、深度学习和神经网络相关的问题时经常有人这么说，但事实果真如此么，我的答案是否定的。 神经网络好比一把枪，我们作为枪手看似只需扣动扳机、击发子弹、命中目标即可，但实际上我们在应用过程中会">
+    <meta name="description" content="0 前言”神经网络就是个工具，我们只需要会用就行了。” ”底层原理我们不用懂，那是学计算机的研究的。” “神经网络是科学也是玄学，调参就是看运气的。” …… 作为一个非计算机专业的学生，在涉及人工智能、深度学习和神经网络相关的问题时经常有人这么说，但事实果真如此么，我的答案是否定的。 神经网络好比一把枪，我们作为枪手看似只需扣动扳机、击发子弹、命中目标即可，但实际上我们在应用过程中会遇到各种各样的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BP神经网络基本原理及MATLAB纯代码实现">
 <meta property="og:url" content="https://wjq5712.github.io/2023/06/15/BP%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E5%8F%8AMATLAB%E7%BA%AF%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="0 前言 ”神经网络就是个工具，我们只需要会用就行了。” ”底层原理我们不用懂，那是学计算机的研究的。” “神经网络是科学也是玄学，调参就是看运气的。” …… 作为一个非计算机专业的学生，在涉及人工智能、深度学习和神经网络相关的问题时经常有人这么说，但事实果真如此么，我的答案是否定的。 神经网络好比一把枪，我们作为枪手看似只需扣动扳机、击发子弹、命中目标即可，但实际上我们在应用过程中会">
+<meta property="og:description" content="0 前言”神经网络就是个工具，我们只需要会用就行了。” ”底层原理我们不用懂，那是学计算机的研究的。” “神经网络是科学也是玄学，调参就是看运气的。” …… 作为一个非计算机专业的学生，在涉及人工智能、深度学习和神经网络相关的问题时经常有人这么说，但事实果真如此么，我的答案是否定的。 神经网络好比一把枪，我们作为枪手看似只需扣动扳机、击发子弹、命中目标即可，但实际上我们在应用过程中会遇到各种各样的">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/wjq5712/BlogImages/main/202306151105991.jpeg">
 <meta property="og:image" content="https://raw.githubusercontent.com/wjq5712/BlogImages/main/202306102221775.jpg">
@@ -117,8 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">0 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bp%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">1 BP神经网络的模型简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#bp%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 BP神经网络结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E5%85%83%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 神经元工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bp%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%B8%B8%E7%94%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E9%85%8D%E7%BD%AE"><span class="nav-number">2.3.</span> <span class="nav-text">1.3 BP神经网络的常用结构与配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bp%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E6%95%B0%E5%AD%A6%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">2.4.</span> <span class="nav-text">1.4 BP神经网络的数学表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AF%E5%B7%AE%E5%87%BD%E6%95%B0"><span class="nav-number">2.5.</span> <span class="nav-text">1.5 误差函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bp%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E8%AE%AD%E7%BB%83"><span class="nav-number">2.6.</span> <span class="nav-text">1.6 BP神经网络的训练</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bp%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E4%B8%8E%E6%9C%AC%E8%B4%A8"><span class="nav-number">3.</span> <span class="nav-text">2 BP神经网络原理与本质</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%90%E5%B1%82%E7%A5%9E%E7%BB%8F%E5%85%83%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 隐层神经元的本质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 参数的本质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AF%E5%B7%AE%E9%80%86%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95errorbackpropagation"><span class="nav-number">3.3.</span> <span class="nav-text">2.3
-误差逆向传播算法(errorBackPropagation)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">4.</span> <span class="nav-text">3 代码实现</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">0 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-BP%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">1 BP神经网络的模型简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-BP%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 BP神经网络结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E7%A5%9E%E7%BB%8F%E5%85%83%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 神经元工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-BP%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%B8%B8%E7%94%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E9%85%8D%E7%BD%AE"><span class="nav-number">2.3.</span> <span class="nav-text">1.3 BP神经网络的常用结构与配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-BP%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E6%95%B0%E5%AD%A6%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">2.4.</span> <span class="nav-text">1.4 BP神经网络的数学表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-%E8%AF%AF%E5%B7%AE%E5%87%BD%E6%95%B0"><span class="nav-number">2.5.</span> <span class="nav-text">1.5 误差函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-BP%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E8%AE%AD%E7%BB%83"><span class="nav-number">2.6.</span> <span class="nav-text">1.6 BP神经网络的训练</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-BP%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E4%B8%8E%E6%9C%AC%E8%B4%A8"><span class="nav-number">3.</span> <span class="nav-text">2 BP神经网络原理与本质</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E9%9A%90%E5%B1%82%E7%A5%9E%E7%BB%8F%E5%85%83%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 隐层神经元的本质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E5%8F%82%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 参数的本质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E8%AF%AF%E5%B7%AE%E9%80%86%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95-errorBackPropagation"><span class="nav-number">3.3.</span> <span class="nav-text">2.3 误差逆向传播算法(errorBackPropagation)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">4.</span> <span class="nav-text">3 代码实现</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -201,8 +200,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="前言">0 前言</h1>
-<p>”神经网络就是个工具，我们只需要会用就行了。”</p>
+    <div class="post-body" itemprop="articleBody"><h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0 前言"></a>0 前言</h1><p>”神经网络就是个工具，我们只需要会用就行了。”</p>
 <p>”底层原理我们不用懂，那是学计算机的研究的。”</p>
 <p>“神经网络是科学也是玄学，调参就是看运气的。”</p>
 <p>……</p>
@@ -210,396 +208,273 @@
 <p>神经网络好比一把枪，我们作为枪手看似只需扣动扳机、击发子弹、命中目标即可，但实际上我们在应用过程中会遇到各种各样的问题。比如，我该选择一个什么类型的网络？样本集该如何获取？数据如何预处理？参数如何调整？每个参数又是什么作用？过拟合是什么？欠拟合又是什么？激活函数怎么选？为什么我的网络总是训练失败？等等……</p>
 <p>因此我决定在刚接触神经网络之时就打好基础，从简单的BP神经网络开始，学习基础原理，搞清楚每一个概念，并通过MATLAB纯代码的方式搭建一个BP神经网络，看看与工具箱有什么区别，为什么有区别。</p>
 <p>值得一提的是，神经网络的种类浩如烟海，要把每一个的基本原理、结构拓扑都了然于胸确实不太现实，因此我的目标仅仅是通过BP这种简单的网络奠定一个基础，让自己心里有底。</p>
-<h1 id="bp神经网络的模型简介">1 BP神经网络的模型简介</h1>
-<h2 id="bp神经网络结构">1.1 BP神经网络结构</h2>
-<p>BP神经网络一般性的拓扑图如下所示：</p>
+<h1 id="1-BP神经网络的模型简介"><a href="#1-BP神经网络的模型简介" class="headerlink" title="1 BP神经网络的模型简介"></a>1 BP神经网络的模型简介</h1><h2 id="1-1-BP神经网络结构"><a href="#1-1-BP神经网络结构" class="headerlink" title="1.1 BP神经网络结构"></a>1.1 BP神经网络结构</h2><p>BP神经网络一般性的拓扑图如下所示：</p>
 <p><img src="https://raw.githubusercontent.com/wjq5712/BlogImages/main/202306151105991.jpeg" alt="111" style="zoom: 33%;" /></p>
 <p>三明治结构，输入层-隐层-输出层，数据从输入层进入，输入层的各神经元将数据加权后传递至隐层的各个神经元，隐层神经元接收数据后根据自身阈值和激活函数加权传递给后续的神经元，指导最后一个隐层把数据传给输出层，最终由输出层神经元处理后输出结果。</p>
 <p>仿生原理：人看到一只猫并辨认出的过程中，眼睛接收了输入，传递给了大脑的神经元，大脑的大量神经元经过复杂的处理后输出结果为：“这是一只猫”。神经元之间通过电信号传递，当电信号在神经元累计超过阈值后就会触发神经冲动，将电信号传给后续的神经元，人工神经网络正是仿照生物神经网络的原理构建起来的。</p>
-<h2 id="神经元工作原理">1.2 神经元工作原理</h2>
-<p>每个神经元的工作原理如下：它将接收到的输入值加权求和后再加上阈值，经过激活函数的转换后输出到下一个神经元。</p>
+<h2 id="1-2-神经元工作原理"><a href="#1-2-神经元工作原理" class="headerlink" title="1.2 神经元工作原理"></a>1.2 神经元工作原理</h2><p>每个神经元的工作原理如下：它将接收到的输入值加权求和后再加上阈值，经过激活函数的转换后输出到下一个神经元。</p>
 <p><img src="https://raw.githubusercontent.com/wjq5712/BlogImages/main/202306102221775.jpg" alt="111" style="zoom:33%;" /></p>
-<h2 id="bp神经网络的常用结构与配置">1.3 BP神经网络的常用结构与配置</h2>
-<p>神经网络的构建首先需要确定<strong>隐层的个数</strong>，<strong>每个隐层的神经元个数</strong>，<strong>每层神经元的激活函数</strong>。</p>
+<h2 id="1-3-BP神经网络的常用结构与配置"><a href="#1-3-BP神经网络的常用结构与配置" class="headerlink" title="1.3 BP神经网络的常用结构与配置"></a>1.3 BP神经网络的常用结构与配置</h2><p>神经网络的构建首先需要确定<strong>隐层的个数</strong>，<strong>每个隐层的神经元个数</strong>，<strong>每层神经元的激活函数</strong>。</p>
 <p>通常，BP神经网络只会设置一个隐层，隐层激活函数设为tansig函数，输出层激活函数设为purelin。</p>
-<p>tansig函数为S型函数： <span class="math display">\[
-y=\frac{2}{1+e^{-2x}}-1
-\]</span> 其函数图像为：</p>
+<p>tansig函数为S型函数：</p>
+<script type="math/tex; mode=display">
+y=\frac{2}{1+e^{-2x}}-1</script><p>其函数图像为：</p>
 <p><img src="https://raw.githubusercontent.com/wjq5712/BlogImages/main/202306151105197.jpeg" alt="333" style="zoom: 67%;" /></p>
-<p>也可用logsig函数（sigmoid）来代替tansig函数，区别在于logsig的取值范围为[0,1]，而tansig是[-1,1]。
-<span class="math display">\[
-y=\frac{1}{1+e^{-x}}
-\]</span> 其函数图像为：</p>
+<p>也可用logsig函数（sigmoid）来代替tansig函数，区别在于logsig的取值范围为[0,1]，而tansig是[-1,1]。</p>
+<script type="math/tex; mode=display">
+y=\frac{1}{1+e^{-x}}</script><p>其函数图像为：</p>
 <p><img src="https://raw.githubusercontent.com/wjq5712/BlogImages/main/202306102218546.jpg" alt="111" style="zoom: 67%;" /></p>
-<p>purelin函数为恒等线性映射函数： <span class="math display">\[
-y=x
-\]</span> 其函数图像为：</p>
+<p>purelin函数为恒等线性映射函数：</p>
+<script type="math/tex; mode=display">
+y=x</script><p>其函数图像为：</p>
 <p><img src="https://raw.githubusercontent.com/wjq5712/BlogImages/main/202306151105841.jpeg" alt="111" style="zoom:67%;" /></p>
 <p>单层网络结构简单，S型隐层激活函数提供了非线性拟合的能力，输出层采用purelin保证输出不受限制。</p>
 <p>“麻雀虽小五脏俱全”</p>
 <p>有人证明，只要隐层神经元足够多就能逼近任何函数。</p>
-<h2 id="bp神经网络的数学表达式">1.4 BP神经网络的数学表达式</h2>
-<p>三层BP神经网络拓扑如下：</p>
+<h2 id="1-4-BP神经网络的数学表达式"><a href="#1-4-BP神经网络的数学表达式" class="headerlink" title="1.4 BP神经网络的数学表达式"></a>1.4 BP神经网络的数学表达式</h2><p>三层BP神经网络拓扑如下：</p>
 <p><img src="https://raw.githubusercontent.com/wjq5712/BlogImages/main/202306151105587.jpeg" alt="111" style="zoom:33%;" /></p>
-<ol type="1">
+<ol>
 <li>网络包含1个输入层，1个隐层，1个输出层；各层神经元数为[2,3,1]。</li>
 <li>激活函数设置：隐层：tansig函数，输出层：purelin</li>
 </ol>
-<p>根据信号传递规则可以得出输入与输出之间的关系： <span
-class="math display">\[
+<p>根据信号传递规则可以得出输入与输出之间的关系：</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
-y_1&amp;=n_{31}\\
-&amp;=w_{21}^{31}n_{21}+w_{22}^{31}n_{22}+w_{23}^{31}n_{23}+b_{31} \\
-&amp;=w_{21}^{31}tansig(w_{11}^{21}n_{11}+w_{12}^{21}n_{12}+b_{21}) \\
-&amp;+w_{22}^{31}tansig(w_{11}^{22}n_{11}+w_{12}^{22}n_{12}+b_{22}) \\
-&amp;+w_{23}^{31}tansig(w_{11}^{23}n_{11}+w_{12}^{23}n_{12}+b_{23})+b_{31}
-\\
-&amp;=w_{21}^{31}tansig(w_{11}^{21}x_{1}+w_{12}^{21}x_{2}+b_{21}) \\
-&amp;+w_{22}^{31}tansig(w_{11}^{22}x_{1}+w_{12}^{22}x_{2}+b_{22}) \\
-&amp;+w_{23}^{31}tansig(w_{11}^{23}x_{1}+w_{12}^{23}x_{2}+b_{23}) \\
-&amp;+b_{31}
-\end{aligned}
-\]</span> 其中，<span
-class="math inline">\(w_{ij}^{pq}\)</span>表示第<span
-class="math inline">\(i\)</span>层第<span
-class="math inline">\(j\)</span>个节点到第<span
-class="math inline">\(p\)</span>层第<span
-class="math inline">\(q\)</span>个节点的权重，<span
-class="math inline">\(b_{ij}\)</span>表示第<span
-class="math inline">\(i\)</span>层第<span
-class="math inline">\(j\)</span>个节点的阈值。</p>
-<p>矩阵表示形式如下： <span class="math display">\[
+y_1&=n_{31}\\
+&=w_{21}^{31}n_{21}+w_{22}^{31}n_{22}+w_{23}^{31}n_{23}+b_{31} \\
+&=w_{21}^{31}tansig(w_{11}^{21}n_{11}+w_{12}^{21}n_{12}+b_{21}) \\
+&+w_{22}^{31}tansig(w_{11}^{22}n_{11}+w_{12}^{22}n_{12}+b_{22}) \\
+&+w_{23}^{31}tansig(w_{11}^{23}n_{11}+w_{12}^{23}n_{12}+b_{23})+b_{31} \\
+&=w_{21}^{31}tansig(w_{11}^{21}x_{1}+w_{12}^{21}x_{2}+b_{21}) \\
+&+w_{22}^{31}tansig(w_{11}^{22}x_{1}+w_{12}^{22}x_{2}+b_{22}) \\
+&+w_{23}^{31}tansig(w_{11}^{23}x_{1}+w_{12}^{23}x_{2}+b_{23}) \\
+&+b_{31} 
+\end{aligned}</script><p>其中，$w_{ij}^{pq}$表示第$i$层第$j$个节点到第$p$层第$q$个节点的权重，$b_{ij}$表示第$i$层第$j$个节点的阈值。</p>
+<p>矩阵表示形式如下：</p>
+<script type="math/tex; mode=display">
 \pmb{y}=\pmb{f}(\pmb{x})=\pmb{W}^{(o)}tansig(\pmb{W}^{(h)}\pmb{x}+\pmb{b}^{(h)})+\pmb{b}^{(o)}
-\label{exp}
-\]</span> 其中， <span class="math display">\[
-\pmb{x} =
+\label{exp}</script><p>其中，</p>
+<script type="math/tex; mode=display">
+\pmb{x} = 
 \begin{bmatrix}
 x_1\\
 x_2
-\end{bmatrix}
-\]</span></p>
-<p><span class="math display">\[
-\pmb{y} = y_{1}
-\]</span></p>
-<p><span class="math display">\[
+\end{bmatrix}</script><script type="math/tex; mode=display">
+\pmb{y} = y_{1}</script><script type="math/tex; mode=display">
 \pmb{W}^{(h)}=
 \begin{bmatrix}
 w_{11}^{21} \quad w_{12}^{21} \\
 w_{11}^{22} \quad w_{12}^{22} \\
 w_{11}^{23} \quad w_{12}^{23} \\
-\end{bmatrix}
-\]</span></p>
-<p><span class="math display">\[
+\end{bmatrix}</script><script type="math/tex; mode=display">
 \pmb{b}^{(h)}=
 \begin{bmatrix}
 b_{21}\\
 b_{22}\\
 b_{23}
-\end{bmatrix}
-\]</span></p>
-<p><span class="math display">\[
+\end{bmatrix}</script><script type="math/tex; mode=display">
 \pmb{W}^{(o)}=
 \begin{bmatrix}
-w_{21}^{31} \quad w_{22}^{31} \quad w_{23}^{31}
-\end{bmatrix}
-\]</span></p>
-<p><span class="math display">\[
-\pmb{b}^{(o)} = b_{31}
-\]</span></p>
-<p>更一般的情况，假设共有<span
-class="math inline">\(n\)</span>层网络，第<span
-class="math inline">\(i\)</span>层节点个数为<span
-class="math inline">\(N_i\)</span>，则第<span
-class="math inline">\(a\)</span>层到第<span
-class="math inline">\(b\)</span>层的权重矩阵为 <span
-class="math display">\[
+w_{21}^{31} \quad w_{22}^{31} \quad w_{23}^{31} 
+\end{bmatrix}</script><script type="math/tex; mode=display">
+\pmb{b}^{(o)} = b_{31}</script><p>更一般的情况，假设共有$n$层网络，第$i$层节点个数为$N_i$，则第$a$层到第$b$层的权重矩阵为</p>
+<script type="math/tex; mode=display">
 \pmb{W}_a^b=
 \begin{bmatrix}
 w_{a1}^{b1} \quad w_{a2}^{b1} \quad  \dots \quad w_{a1N_a}^{b1} \\
 \vdots \\
 w_{a1}^{bN_b} \quad w_{a2}^{bN_b} \quad  \dots \quad w_{a1N_a}^{bN_b} \\
-\end{bmatrix}
-\]</span> 阈值矩阵为 <span class="math display">\[
-\pmb{b}_a^b=[b_1 \quad\dots\quad b_b]^\text{T}
-\]</span></p>
-<h2 id="误差函数">1.5 误差函数</h2>
-<p>BP神经网络的误差函数采用预测值与真实值的均方误差，定义如下： <span
-class="math display">\[
-\pmb{E}(\pmb{W},\pmb{b})=\frac{1}{m}\sum_{i+1}^m
-\frac{1}{k}\sum_{j=1}^k(\hat{\pmb{y}}_{ij}-\pmb{y}_{ij})^2
-\]</span> 其中，<span
-class="math inline">\(m\)</span>为训练样本个数，<span
-class="math inline">\(n\)</span>为输出个数。<span
-class="math inline">\(\hat{\pmb{y}}_{ij}\)</span>为第<span
-class="math inline">\(i\)</span>个样本的第<span
-class="math inline">\(j\)</span>个输出的预测值，<span
-class="math inline">\(\pmb{y}_{ij}\)</span>为对应的真实值。</p>
+\end{bmatrix}</script><p>阈值矩阵为</p>
+<script type="math/tex; mode=display">
+\pmb{b}_a^b=[b_1 \quad\dots\quad b_b]^\text{T}</script><h2 id="1-5-误差函数"><a href="#1-5-误差函数" class="headerlink" title="1.5 误差函数"></a>1.5 误差函数</h2><p>BP神经网络的误差函数采用预测值与真实值的均方误差，定义如下：</p>
+<script type="math/tex; mode=display">
+\pmb{E}(\pmb{W},\pmb{b})=\frac{1}{m}\sum_{i+1}^m \frac{1}{k}\sum_{j=1}^k(\hat{\pmb{y}}_{ij}-\pmb{y}_{ij})^2</script><p>其中，$m$为训练样本个数，$n$为输出个数。$\hat{\pmb{y}}_{ij}$为第$i$个样本的第$j$个输出的预测值，$\pmb{y}_{ij}$为对应的真实值。</p>
 <p>显然，误差函数是一个关于权重矩阵和阈值矩阵的函数，采用不同的权重矩阵和阈值矩阵就对应不同的误差。</p>
-<h2 id="bp神经网络的训练">1.6 BP神经网络的训练</h2>
-<p>常用的训练算法有梯度下降法、LM法，MATLAB提供的神经网络工具箱还采用了有动量的梯度下降法、自适应lr梯度下降法、自适应lr动量梯度下降法、弹性梯度下降法、Fletcher-Reeves共轭梯度法、Ploak-Ribiere共轭梯度法、Powell-Beale共轭梯度法、量化共轭梯度法、拟牛顿算法、一步正割算法、Levenberg-Marquardt法等。</p>
+<h2 id="1-6-BP神经网络的训练"><a href="#1-6-BP神经网络的训练" class="headerlink" title="1.6 BP神经网络的训练"></a>1.6 BP神经网络的训练</h2><p>常用的训练算法有梯度下降法、LM法，MATLAB提供的神经网络工具箱还采用了有动量的梯度下降法、自适应lr梯度下降法、自适应lr动量梯度下降法、弹性梯度下降法、Fletcher-Reeves共轭梯度法、Ploak-Ribiere共轭梯度法、Powell-Beale共轭梯度法、量化共轭梯度法、拟牛顿算法、一步正割算法、Levenberg-Marquardt法等。</p>
+<div class="table-container">
 <table>
 <thead>
-<tr class="header">
-<th style="text-align: center;">训练参数名</th>
-<th style="text-align: center;">训练方法</th>
+<tr>
+<th style="text-align:center">训练参数名</th>
+<th style="text-align:center">训练方法</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: center;">traingd</td>
-<td style="text-align: center;">梯度下降法</td>
+<tr>
+<td style="text-align:center">traingd</td>
+<td style="text-align:center">梯度下降法</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">traingdm</td>
-<td style="text-align: center;">有动量的梯度下降法</td>
+<tr>
+<td style="text-align:center">traingdm</td>
+<td style="text-align:center">有动量的梯度下降法</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">traingda</td>
-<td style="text-align: center;">自适应lr梯度下降法</td>
+<tr>
+<td style="text-align:center">traingda</td>
+<td style="text-align:center">自适应lr梯度下降法</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">traingdx</td>
-<td style="text-align: center;">自适应lr动量梯度下降法</td>
+<tr>
+<td style="text-align:center">traingdx</td>
+<td style="text-align:center">自适应lr动量梯度下降法</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">trainrp</td>
-<td style="text-align: center;">弹性梯度下降法</td>
+<tr>
+<td style="text-align:center">trainrp</td>
+<td style="text-align:center">弹性梯度下降法</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">traincgf</td>
-<td style="text-align: center;">Fletcher-Reeves共轭梯度法</td>
+<tr>
+<td style="text-align:center">traincgf</td>
+<td style="text-align:center">Fletcher-Reeves共轭梯度法</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">traincgp</td>
-<td style="text-align: center;">Ploak-Ribiere共轭梯度法</td>
+<tr>
+<td style="text-align:center">traincgp</td>
+<td style="text-align:center">Ploak-Ribiere共轭梯度法</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">traincgb</td>
-<td style="text-align: center;">Powell-Beale共轭梯度法</td>
+<tr>
+<td style="text-align:center">traincgb</td>
+<td style="text-align:center">Powell-Beale共轭梯度法</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">trainscg</td>
-<td style="text-align: center;">量化共轭梯度法</td>
+<tr>
+<td style="text-align:center">trainscg</td>
+<td style="text-align:center">量化共轭梯度法</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">trainbfg</td>
-<td style="text-align: center;">拟牛顿算法</td>
+<tr>
+<td style="text-align:center">trainbfg</td>
+<td style="text-align:center">拟牛顿算法</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">trainoss</td>
-<td style="text-align: center;">一步正割算法</td>
+<tr>
+<td style="text-align:center">trainoss</td>
+<td style="text-align:center">一步正割算法</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">trainlm</td>
-<td style="text-align: center;">Levenberg-Marquardt法</td>
+<tr>
+<td style="text-align:center">trainlm</td>
+<td style="text-align:center">Levenberg-Marquardt法</td>
 </tr>
 </tbody>
 </table>
-<h1 id="bp神经网络原理与本质">2 BP神经网络原理与本质</h1>
-<h2 id="隐层神经元的本质">2.1 隐层神经元的本质</h2>
-<p>从数学表达式不难看出，隐层神经元对应的数学对象就是tansig激活函数，而最终的输出<span
-class="math inline">\(y\)</span>是由多个tansig函数叠加而成，因此本质上BP神经网络就是通过多个tansig函数叠加来组合成目标函数，用多少个隐层神经元就等于用了多少个tansig函数来拟合目标函数，因此理论上只要神经元个数足够多，单层BP神经网络就可以拟合出任何一个函数。</p>
-<h2 id="参数的本质">2.2 参数的本质</h2>
-<ol type="1">
+</div>
+<h1 id="2-BP神经网络原理与本质"><a href="#2-BP神经网络原理与本质" class="headerlink" title="2 BP神经网络原理与本质"></a>2 BP神经网络原理与本质</h1><h2 id="2-1-隐层神经元的本质"><a href="#2-1-隐层神经元的本质" class="headerlink" title="2.1 隐层神经元的本质"></a>2.1 隐层神经元的本质</h2><p>从数学表达式不难看出，隐层神经元对应的数学对象就是tansig激活函数，而最终的输出$y$是由多个tansig函数叠加而成，因此本质上BP神经网络就是通过多个tansig函数叠加来组合成目标函数，用多少个隐层神经元就等于用了多少个tansig函数来拟合目标函数，因此理论上只要神经元个数足够多，单层BP神经网络就可以拟合出任何一个函数。</p>
+<h2 id="2-2-参数的本质"><a href="#2-2-参数的本质" class="headerlink" title="2.2 参数的本质"></a>2.2 参数的本质</h2><ol>
 <li>本层的权重绝定激活函数的“高矮”</li>
 </ol>
 <p><img src="https://raw.githubusercontent.com/wjq5712/BlogImages/main/202306110006746.jpg" alt="11" style="zoom: 67%;" /></p>
-<ol start="2" type="1">
+<ol>
 <li>前一层的权重决定激活函数的“胖瘦”</li>
 </ol>
 <p><img src="https://raw.githubusercontent.com/wjq5712/BlogImages/main/202306151105710.jpeg" alt="22" style="zoom:67%;" /></p>
-<ol start="3" type="1">
+<ol>
 <li>本层的阈值决定激活函数的“上下”</li>
 </ol>
 <p><img src="https://raw.githubusercontent.com/wjq5712/BlogImages/main/202306151105417.jpeg" alt="33" style="zoom:67%;" /></p>
 <p>因此，参数的本质就是调整各个激活函数的形态，使得多个激活函数叠加后能毕竟目标函数。</p>
 <p>总结：BP神经网络的层数和每层的神经元的个数决定了激活函数的个数，而各个神经元的参数（权重、阈值）决定了每个激活函数的形态，神经网络的训练就是找出最优的一组参数，使得激活函数的叠加逼近目标函数。</p>
-<h2 id="误差逆向传播算法errorbackpropagation">2.3
-误差逆向传播算法(errorBackPropagation)</h2>
-<p>误差逆向传播算法(BP算法)是应用最为广泛的一种学习算法，不仅可以用来训练多层前馈神经网络，还可用于其他类型的神经网络，如递归神经网络等。</p>
+<h2 id="2-3-误差逆向传播算法-errorBackPropagation"><a href="#2-3-误差逆向传播算法-errorBackPropagation" class="headerlink" title="2.3 误差逆向传播算法(errorBackPropagation)"></a>2.3 误差逆向传播算法(errorBackPropagation)</h2><p>误差逆向传播算法(BP算法)是应用最为广泛的一种学习算法，不仅可以用来训练多层前馈神经网络，还可用于其他类型的神经网络，如递归神经网络等。</p>
 <p><img src="https://raw.githubusercontent.com/wjq5712/BlogImages/main/202306151105991.jpeg" alt="111" style="zoom: 33%;" /></p>
-<p>假设输入层有<span
-class="math inline">\(P\)</span>个节点，输入层信号向量为<span
-class="math inline">\(\pmb{x}_{P \times 1}\)</span>，输出层有<span
-class="math inline">\(Q\)</span>个节点，输出层信号向量为<span
-class="math inline">\(\pmb{y}_{Q\times1}\)</span>，权重矩阵为<span
-class="math inline">\((\pmb{W}^\text{o})_{Q\times
-M_{N}}\)</span>，阈值矩阵为<span
-class="math inline">\((\pmb{b}^\text{o})_{Q \times
-1}\)</span>，激活函数为<span
-class="math inline">\(f^\text{o}(·)\)</span>，共有<span
-class="math inline">\(N\)</span>层隐层，第<span
-class="math inline">\(n\)</span>层隐层有<span
-class="math inline">\(M_n\)</span>个节点，第<span
-class="math inline">\(n\)</span>层隐层信号向量为<span
-class="math inline">\((\pmb{s}^n)_{M_{N} \times 1}\)</span>，第<span
-class="math inline">\(n\)</span>层隐层的权重矩阵为<span
-class="math inline">\((\pmb{W}^n)_{M_n\times
-M_{n-1}}\)</span>，阈值矩阵为<span
-class="math inline">\((\pmb{b}^n)_{M_n \times
-1}\)</span>，激活函数为<span
-class="math inline">\(f^{n}(·)\)</span>。</p>
-<p>根据式<span
-class="math inline">\(\eqref{exp}\)</span>，可得一般化的多层BP神经网络的传递公式，</p>
-<p>输出层的传递公式： <span class="math display">\[
-\pmb{y} = f^\text{o}(\pmb{W}^\text{o}\pmb{s}^{N}+\pmb{b}^o)
-\]</span> 第<span class="math inline">\(n\)</span>层隐层的传递公式：
-<span class="math display">\[
-\pmb{s}^n = f^n(\pmb{W}^n\pmb{s}^{n-1}+\pmb{b}^{n})
-\]</span> 第1层隐层的传递公式为： <span class="math display">\[
-\pmb{s}^1=f^1(\pmb{W}^1\pmb{x}+\pmb{b}^1)
-\]</span> 训练过程中，对样本<span
-class="math inline">\((\pmb{x}_k,\pmb{y}_k)\)</span>，神经网络输出的为预测值<span
-class="math inline">\(\hat{\pmb{y}}_k\)</span>，则均方误差为： <span
-class="math display">\[
-E_k = \frac{1}{2}
-(\hat{\pmb{y}}_k-\pmb{y}_k)^\text{T}(\hat{\pmb{y}}_k-\pmb{y}_k)
-\label{err}
-\]</span> BP神经网络基于梯度下降策略（Gradient
-Descent），以目标的负梯度方向对参数进行调整，对式<span
-class="math inline">\(\eqref{err}\)</span>的误差<span
-class="math inline">\(E_k\)</span>，给定学习率<span
-class="math inline">\(\eta\)</span>，首先对输出层的参数进行迭代，为了避免对矩阵的求导，将权值矩阵<span
-class="math inline">\(\pmb{W}_{m\times n}\)</span>变换为列向量，即 <span
-class="math display">\[
-\tilde{\pmb{W}} =
+<p>假设输入层有$P$个节点，输入层信号向量为$\pmb{x}_{P \times 1}$，输出层有$Q$个节点，输出层信号向量为$\pmb{y}_{Q\times1}$，权重矩阵为$(\pmb{W}^\text{o})_{Q\times M_{N}}$，阈值矩阵为$(\pmb{b}^\text{o})_{Q \times 1}$，激活函数为$f^\text{o}(·)$，共有$N$层隐层，第$n$层隐层有$M_n$个节点，第$n$层隐层信号向量为$(\pmb{s}^n)_{M_{N} \times 1}$，第$n$层隐层的权重矩阵为$(\pmb{W}^n)_{M_n\times M_{n-1}}$，阈值矩阵为$(\pmb{b}^n)_{M_n \times 1}$，激活函数为$f^{n}(·)$。</p>
+<p>根据式$\eqref{exp}$，可得一般化的多层BP神经网络的传递公式，</p>
+<p>输出层的传递公式：</p>
+<script type="math/tex; mode=display">
+\pmb{y} = f^\text{o}(\pmb{W}^\text{o}\pmb{s}^{N}+\pmb{b}^o)</script><p>第$n$层隐层的传递公式：</p>
+<script type="math/tex; mode=display">
+\pmb{s}^n = f^n(\pmb{W}^n\pmb{s}^{n-1}+\pmb{b}^{n})</script><p>第1层隐层的传递公式为：</p>
+<script type="math/tex; mode=display">
+\pmb{s}^1=f^1(\pmb{W}^1\pmb{x}+\pmb{b}^1)</script><p>训练过程中，对样本$(\pmb{x}_k,\pmb{y}_k)$，神经网络输出的为预测值$\hat{\pmb{y}}_k$，则均方误差为：</p>
+<script type="math/tex; mode=display">
+E_k = \frac{1}{2} (\hat{\pmb{y}}_k-\pmb{y}_k)^\text{T}(\hat{\pmb{y}}_k-\pmb{y}_k)
+\label{err}</script><p>BP神经网络基于梯度下降策略（Gradient Descent），以目标的负梯度方向对参数进行调整，对式$\eqref{err}$的误差$E_k$，给定学习率$\eta$，首先对输出层的参数进行迭代，为了避免对矩阵的求导，将权值矩阵$\pmb{W}_{m\times n}$变换为列向量，即</p>
+<script type="math/tex; mode=display">
+\tilde{\pmb{W}} = 
 \begin{bmatrix}
 W_{11} \quad W_{12} \quad \dots \quad W_{1n} \quad
 W_{21} \quad W_{22} \quad \dots \quad W_{2n} \quad
 \dots \quad
 W_{m1} \quad W_{m2} \quad \dots \quad W_{mn} \quad
-\end{bmatrix}^\text{T} \label{WeightMatTransf}
-\]</span> ，传递公式变换为： <span class="math display">\[
-\pmb{y} = f^\text{o}(\pmb{S}^{N}
-\tilde{\pmb{W}}^\text{o}+\pmb{b}^{\text{o}})
-\]</span> 其中， <span class="math display">\[
-\pmb{S}^{N} =
+\end{bmatrix}^\text{T} \label{WeightMatTransf}</script><p>，传递公式变换为：</p>
+<script type="math/tex; mode=display">
+\pmb{y} = f^\text{o}(\pmb{S}^{N} \tilde{\pmb{W}}^\text{o}+\pmb{b}^{\text{o}})</script><p>其中，</p>
+<script type="math/tex; mode=display">
+\pmb{S}^{N} = 
 \begin{bmatrix}
-{\pmb{s}^{N}}^\text{T} \quad \pmb{0}_{1,M_{N}} \quad \dots \quad
-\pmb{0}_{1,M_{N}}\\
-\pmb{0}_{1,M_{N}} \quad {\pmb{s}^{N}}^\text{T} \quad \dots \quad
-\pmb{0}_{1,M_{N}}\\
+{\pmb{s}^{N}}^\text{T} \quad \pmb{0}_{1,M_{N}} \quad \dots \quad \pmb{0}_{1,M_{N}}\\
+\pmb{0}_{1,M_{N}} \quad {\pmb{s}^{N}}^\text{T} \quad \dots \quad \pmb{0}_{1,M_{N}}\\
 \vdots \\
-\pmb{0}_{1,M_{N}} \quad \pmb{0}_{1,M_{N}} \quad \dots \quad
-{\pmb{s}^{N}}^\text{T}\\
+\pmb{0}_{1,M_{N}} \quad \pmb{0}_{1,M_{N}} \quad \dots \quad {\pmb{s}^{N}}^\text{T}\\
 \end{bmatrix}
 =
-\pmb{I}_{Q} \otimes \pmb{s}^{N}
-\]</span> <span
-class="math inline">\(\otimes\)</span>表示克罗内克积。</p>
-<p>则权值矩阵的修正量为， <span class="math display">\[
-\Delta \tilde{\pmb{W}}^\text{o} = -\eta \frac{\partial E_k}{\partial
-\tilde{\pmb{W}}^\text{o}}
-\]</span> 其中， <span class="math display">\[
-\frac{\partial E_k}{\partial \tilde{\pmb{W}}^\text{o}} =
-(\frac{\partial \hat{\pmb{y}}_k}{\partial (\pmb{S}^{N}
-\tilde{\pmb{W}}^\text{o}+\pmb{b}^{\text{o}})}
-\frac{\partial(\pmb{S}^{N}
-\tilde{\pmb{W}}^\text{o}+\pmb{b}^{\text{o}})}{\partial
-\tilde{\pmb{W}}^\text{o}})^\text{T}
-\frac{\partial E_k}{\partial \hat{\pmb{y}}_k}
-\]</span> 当激活函数为sigmoid时，利用其导数性质 <span
-class="math display">\[
-f&#39;_\text{sigmoid} = f_\text{sigmoid}(1-f_\text{sigmoid})
-\]</span> 可得，</p>
-<p><span class="math display">\[
+\pmb{I}_{Q} \otimes \pmb{s}^{N}</script><p>$\otimes$表示克罗内克积。</p>
+<p>则权值矩阵的修正量为，</p>
+<script type="math/tex; mode=display">
+\Delta \tilde{\pmb{W}}^\text{o} = -\eta \frac{\partial E_k}{\partial \tilde{\pmb{W}}^\text{o}}</script><p>其中，</p>
+<script type="math/tex; mode=display">
+\frac{\partial E_k}{\partial \tilde{\pmb{W}}^\text{o}} = 
+(\frac{\partial \hat{\pmb{y}}_k}{\partial (\pmb{S}^{N} \tilde{\pmb{W}}^\text{o}+\pmb{b}^{\text{o}})}
+\frac{\partial(\pmb{S}^{N} \tilde{\pmb{W}}^\text{o}+\pmb{b}^{\text{o}})}{\partial \tilde{\pmb{W}}^\text{o}})^\text{T}
+\frac{\partial E_k}{\partial \hat{\pmb{y}}_k}</script><p>当激活函数为sigmoid时，利用其导数性质</p>
+<script type="math/tex; mode=display">
+f'_\text{sigmoid} = f_\text{sigmoid}(1-f_\text{sigmoid})</script><p>可得，</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
-\frac{\partial E_k}{\partial \tilde{\pmb{W}}^\text{o}}
-&amp;=
-((diag(\hat{\pmb{y}}_k)-\hat{\pmb{y}}_k\hat{\pmb{y}}_k^\text{T}){\pmb{S}^{N}})^\text{T}
-(\hat{\pmb{y}}_k-\pmb{y}_k) \\
-&amp;=
-{\pmb{S}^{N}}^\text{T}(diag(\hat{\pmb{y}}_k)-\hat{\pmb{y}}_k\hat{\pmb{y}}_k^\text{T})(\hat{\pmb{y}}_k-\pmb{y}_k)
-\end{aligned}
-\]</span> 阈值矩阵的修正量也类似， <span class="math display">\[
-\Delta {\pmb{b}}^\text{o} = -\eta \frac{\partial E_k}{\partial
-{\pmb{b}}^\text{o}}
-\]</span> 其中， <span class="math display">\[
+\frac{\partial E_k}{\partial \tilde{\pmb{W}}^\text{o}} 
+&= ((diag(\hat{\pmb{y}}_k)-\hat{\pmb{y}}_k\hat{\pmb{y}}_k^\text{T}){\pmb{S}^{N}})^\text{T} (\hat{\pmb{y}}_k-\pmb{y}_k) \\
+&= {\pmb{S}^{N}}^\text{T}(diag(\hat{\pmb{y}}_k)-\hat{\pmb{y}}_k\hat{\pmb{y}}_k^\text{T})(\hat{\pmb{y}}_k-\pmb{y}_k)
+\end{aligned}</script><p>阈值矩阵的修正量也类似，</p>
+<script type="math/tex; mode=display">
+\Delta {\pmb{b}}^\text{o} = -\eta \frac{\partial E_k}{\partial {\pmb{b}}^\text{o}}</script><p>其中，</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
-\frac{\partial E_k}{\partial \pmb{b}}^\text{o} &amp;=
-(\frac{\partial \hat{\pmb{y}}_k}{\partial (\pmb{S}^{N}
-\tilde{\pmb{W}}^\text{o}+\pmb{b}^{\text{o}})}
-\frac{\partial(\pmb{S}^{N}
-\tilde{\pmb{W}}^\text{o}+\pmb{b}^{\text{o}})}{\partial
-\pmb{b}^\text{o}})^\text{T}
+\frac{\partial E_k}{\partial \pmb{b}}^\text{o} &= 
+(\frac{\partial \hat{\pmb{y}}_k}{\partial (\pmb{S}^{N} \tilde{\pmb{W}}^\text{o}+\pmb{b}^{\text{o}})}
+\frac{\partial(\pmb{S}^{N} \tilde{\pmb{W}}^\text{o}+\pmb{b}^{\text{o}})}{\partial \pmb{b}^\text{o}})^\text{T}
 \frac{\partial E_k}{\partial \hat{\pmb{y}}_k} \\
-&amp;=
-(diag(\hat{\pmb{y}}_k)-\hat{\pmb{y}}_k\hat{\pmb{y}}_k^\text{T})(\hat{\pmb{y}}_k-\pmb{y}_k)
-\end{aligned}
-\]</span> 不难发现， <span class="math display">\[
-\Delta \tilde{\pmb{W}}^\text{o} = {\pmb{S}^{N}}^\text{T} \Delta
-{\pmb{b}}^\text{o}
-\]</span> 注意，当输出层的激活函数为purelin时， <span
-class="math display">\[
-\frac{\partial E_k}{\partial \tilde{\pmb{W}}^\text{o}}
-= {\pmb{S}^{N}}^\text{T}(\hat{\pmb{y}}_k-\pmb{y}_k)
-\]</span></p>
-<p><span class="math display">\[
-\frac{\partial E_k}{\partial {\pmb{b}}^\text{o}}
-= (\hat{\pmb{y}}_k-\pmb{y}_k)
-\]</span></p>
-<p>同样的，隐层的参数迭代也需要将权重矩阵<span
-class="math inline">\(\pmb{W}^n\)</span>通过式<span
-class="math inline">\(\eqref{WeightMatTransf}\)</span>变换为列向量，相应的修正量为：
-<span class="math display">\[
-\Delta \tilde{\pmb{W}}^n = -\eta \frac{\partial E_k}{\partial
-\tilde{\pmb{W}}^n}
-\]</span> 其中， <span class="math display">\[
+&= (diag(\hat{\pmb{y}}_k)-\hat{\pmb{y}}_k\hat{\pmb{y}}_k^\text{T})(\hat{\pmb{y}}_k-\pmb{y}_k)
+\end{aligned}</script><p>不难发现，</p>
+<script type="math/tex; mode=display">
+\Delta \tilde{\pmb{W}}^\text{o} = {\pmb{S}^{N}}^\text{T} \Delta {\pmb{b}}^\text{o}</script><p>注意，当输出层的激活函数为purelin时，</p>
+<script type="math/tex; mode=display">
+\frac{\partial E_k}{\partial \tilde{\pmb{W}}^\text{o}} 
+= {\pmb{S}^{N}}^\text{T}(\hat{\pmb{y}}_k-\pmb{y}_k)</script><script type="math/tex; mode=display">
+\frac{\partial E_k}{\partial {\pmb{b}}^\text{o}} 
+= (\hat{\pmb{y}}_k-\pmb{y}_k)</script><p>同样的，隐层的参数迭代也需要将权重矩阵$\pmb{W}^n$通过式$\eqref{WeightMatTransf}$变换为列向量，相应的修正量为：</p>
+<script type="math/tex; mode=display">
+\Delta \tilde{\pmb{W}}^n = -\eta \frac{\partial E_k}{\partial \tilde{\pmb{W}}^n}</script><p>其中，</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
 \frac{\partial E_k}{\partial \tilde{\pmb{W}}^n}
-&amp;=(\frac{\partial \hat{\pmb{y}}_k}{\partial \pmb{s}^{N}}
+&=(\frac{\partial \hat{\pmb{y}}_k}{\partial \pmb{s}^{N}}
 \frac{\partial \pmb{s}^{N}}{\partial \pmb{s}^{N-1}} \dots
 \frac{\partial \pmb{s}^{n+1}}{\partial \pmb{s}^{n}}
-\frac{\partial \pmb{s}^{n}}{\partial (\pmb{S}^{n-1}
-\tilde{\pmb{W}}^n+\pmb{b}^{n})}
-\frac{\partial (\pmb{S}^{n-1} \tilde{\pmb{W}}^n+\pmb{b}^{n})}{\partial
-\tilde{\pmb{W}}^n})^\text{T}
+\frac{\partial \pmb{s}^{n}}{\partial (\pmb{S}^{n-1} \tilde{\pmb{W}}^n+\pmb{b}^{n})}
+\frac{\partial (\pmb{S}^{n-1} \tilde{\pmb{W}}^n+\pmb{b}^{n})}{\partial \tilde{\pmb{W}}^n})^\text{T}
 \frac{\partial E_k}{\partial \hat{\pmb{y}}_k} \\
-&amp;=((diag(\hat{\pmb{y}}_k)-\hat{\pmb{y}}_k\hat{\pmb{y}}_k^\text{T}){\pmb{W}}^\text{o}
+&=((diag(\hat{\pmb{y}}_k)-\hat{\pmb{y}}_k\hat{\pmb{y}}_k^\text{T}){\pmb{W}}^\text{o}
 (diag(\pmb{s}^N)-\pmb{s}^N{\pmb{s}^N}^\text{T}){\pmb{W}}^N
-(diag(\pmb{s}^{N-1})-\pmb{s}^{N-1}{\pmb{s}^{N-1}}^\text{T}){\pmb{W}}^{N-1}
-\dots
+(diag(\pmb{s}^{N-1})-\pmb{s}^{N-1}{\pmb{s}^{N-1}}^\text{T}){\pmb{W}}^{N-1} \dots
 (diag(\pmb{s}^{n})-\pmb{s}^{n}{\pmb{s}^{n}}^\text{T})\pmb{S}^{n-1}
 )^\text{T}(\hat{\pmb{y}}_k-\pmb{y}_k) \\
-&amp;= (\pmb{S}^{n-1})^\text{T}
-(diag(\pmb{s}^{n})-\pmb{s}^{n}{\pmb{s}^{n}}^\text{T})  
-({\pmb{W}}^{n+1})^\text{T}(diag(\pmb{s}^{n+1})-\pmb{s}^{n+1}{\pmb{s}^{n+1}}^\text{T})
-\dots
+&= (\pmb{S}^{n-1})^\text{T} (diag(\pmb{s}^{n})-\pmb{s}^{n}{\pmb{s}^{n}}^\text{T})  
+({\pmb{W}}^{n+1})^\text{T}(diag(\pmb{s}^{n+1})-\pmb{s}^{n+1}{\pmb{s}^{n+1}}^\text{T}) \dots 
 ({\pmb{W}}^{N})^\text{T}(diag(\pmb{s}^{N})-\pmb{s}^{N}{\pmb{s}^{N}}^\text{T})
 ({\pmb{W}}^\text{o})^\text{T}(diag(\hat{\pmb{y}}_k)-\hat{\pmb{y}}_k\hat{\pmb{y}}_k^\text{T})
 (\hat{\pmb{y}}_k-\pmb{y}_k)
-\end{aligned}
-\]</span> 同理， <span class="math display">\[
+\end{aligned}</script><p>同理，</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
-\Delta {\pmb{b}}^n &amp;= -\eta \frac{\partial E_k}{\partial
-{\pmb{b}}^n}\\
-&amp;= -\eta (diag(\pmb{s}^{n})-\pmb{s}^{n}{\pmb{s}^{n}}^\text{T})  
-({\pmb{W}}^{n+1})^\text{T}(diag(\pmb{s}^{n+1})-\pmb{s}^{n+1}{\pmb{s}^{n+1}}^\text{T})
-\dots
+\Delta {\pmb{b}}^n &= -\eta \frac{\partial E_k}{\partial {\pmb{b}}^n}\\
+&= -\eta (diag(\pmb{s}^{n})-\pmb{s}^{n}{\pmb{s}^{n}}^\text{T})  
+({\pmb{W}}^{n+1})^\text{T}(diag(\pmb{s}^{n+1})-\pmb{s}^{n+1}{\pmb{s}^{n+1}}^\text{T}) \dots 
 ({\pmb{W}}^{N})^\text{T}(diag(\pmb{s}^{N})-\pmb{s}^{N}{\pmb{s}^{N}}^\text{T})
 ({\pmb{W}}^\text{o})^\text{T}(diag(\hat{\pmb{y}}_k)-\hat{\pmb{y}}_k\hat{\pmb{y}}_k^\text{T})
 (\hat{\pmb{y}}_k-\pmb{y}_k)
-\end{aligned}
-\]</span></p>
-<p>不难看出， <span class="math display">\[
-\Delta
-{\pmb{b}}^n=(diag(\pmb{s}^{n})-\pmb{s}^{n}{\pmb{s}^{n}}^\text{T})  
-({\pmb{W}}^{n+1})^\text{T} \Delta {\pmb{b}}^{n+1}
-\]</span></p>
-<p><span class="math display">\[
+\end{aligned}</script><p>不难看出，</p>
+<script type="math/tex; mode=display">
+\Delta {\pmb{b}}^n=(diag(\pmb{s}^{n})-\pmb{s}^{n}{\pmb{s}^{n}}^\text{T})  
+({\pmb{W}}^{n+1})^\text{T} \Delta {\pmb{b}}^{n+1}</script><script type="math/tex; mode=display">
 \begin{aligned}
 \frac{\partial E_k}{\partial \tilde{\pmb{W}}^n}
-&amp;=(\pmb{S}^{n-1})^\text{T}
-(diag(\pmb{s}^{n})-\pmb{s}^{n}{\pmb{s}^{n}}^\text{T})  
-(\pmb{W}^{n+1})^\text{T}(\pmb{S}^{n})^\text{-T}\frac{\partial
-E_k}{\partial \tilde{\pmb{W}}^{n+1}}\\
-&amp;=(\pmb{S}^{n-1})^\text{T}
-(diag(\pmb{s}^{n})-\pmb{s}^{n}{\pmb{s}^{n}}^\text{T})  
+&=(\pmb{S}^{n-1})^\text{T} (diag(\pmb{s}^{n})-\pmb{s}^{n}{\pmb{s}^{n}}^\text{T})  
+(\pmb{W}^{n+1})^\text{T}(\pmb{S}^{n})^\text{-T}\frac{\partial E_k}{\partial \tilde{\pmb{W}}^{n+1}}\\
+&=(\pmb{S}^{n-1})^\text{T} (diag(\pmb{s}^{n})-\pmb{s}^{n}{\pmb{s}^{n}}^\text{T})  
 (\pmb{W}^{n+1})^\text{T}\frac{\partial E_k}{\partial {\pmb{b}}^n}
-\end{aligned}
-\]</span>
-综上，BP神经网络训练过程中的参数修正量计算存在递推关系，计算顺序如下：
-<span class="math display">\[
+\end{aligned}</script><p>综上，BP神经网络训练过程中的参数修正量计算存在递推关系，计算顺序如下：</p>
+<script type="math/tex; mode=display">
 \hat{\pmb{y}}_k \rightarrow
 \Delta {\pmb{b}}^\text{o} \rightarrow
 \Delta \tilde{\pmb{W}}^\text{o} \rightarrow
@@ -608,11 +483,8 @@ E_k}{\partial \tilde{\pmb{W}}^{n+1}}\\
 \Delta {\pmb{b}}^n \rightarrow
 \Delta \tilde{\pmb{W}}^n \rightarrow \dots
 \Delta {\pmb{b}}^1 \rightarrow
-\Delta \tilde{\pmb{W}}^1
-\]</span>
-上式即BP神经网络的本质，信号从输入层进入经过隐层到输出端输出，对应了前馈网络的传播方向，训练时误差最先影响输出端的参数修正，再由后向前依次影响各隐层参数的修正，对应了误差的后向修正算法。</p>
-<h1 id="代码实现">3 代码实现</h1>
-<p>实现了，但不想写了，有空再补:)</p>
+\Delta \tilde{\pmb{W}}^1</script><p>上式即BP神经网络的本质，信号从输入层进入经过隐层到输出端输出，对应了前馈网络的传播方向，训练时误差最先影响输出端的参数修正，再由后向前依次影响各隐层参数的修正，对应了误差的后向修正算法。</p>
+<h1 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3 代码实现"></a>3 代码实现</h1><p>实现了，但不想写了，有空再补:)</p>
 
     </div>
 
